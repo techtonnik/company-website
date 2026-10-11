@@ -43,7 +43,7 @@ export const marqueeLogos = [
   { src: media('cce622_8155ce1bc57c46acaf2e87322f275800'), alt: 'Synergy X' },
   { src: media('cce622_5f2a594203974d259e6cffcd05de2aa4'), alt: 'CodeIT' },
   { src: media('cce622_dd2e9f3eed2b4b029cd8bcd5ebcc8b62'), alt: 'BCA Scheduler' },
-  { src: media('cce622_86c7036507c946aa8a1059eb8ba324a5'), alt: 'Client logo' },
+  { src: media('cce622_86c7036507c946aa8a1059eb8ba324a5'), alt: 'NotYou Brand' },
   { src: media('cce622_dc33e6cee92149b7bb5704c02b4b515c'), alt: '$CHEF' },
   { src: media('cce622_7e969dcc5b7642268c641dfb6d1f67d3'), alt: 'AK Kompresor' },
   { src: media('cce622_fa544ea2723645fdbefc45a7de4290de'), alt: 'Investiva' },

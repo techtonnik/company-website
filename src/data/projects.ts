@@ -75,6 +75,6 @@ export const moreProjects: Project[] = [
   { name: 'Hamster Casino', summary: 'A landing page for a TON casino, designed and built in 36 hours.', logo: media('249b31_83a86115de9240928b0bdd6437982042'), href: 'https://www.hamstercasino.xyz/' },
   { name: '$CHEF CAT', summary: 'A website for a chef-themed memecoin.', logo: media('cce622_dc33e6cee92149b7bb5704c02b4b515c'), href: 'https://thezenithdigital.wixstudio.io/chefcoin' },
   { name: 'D&L Pedicure', summary: 'A website for a beauty salon in the Netherlands.', logo: media('249b31_b5a1cbacdb4f495799147ef887e46843'), href: 'https://denlpedicure.nl/' },
-  { name: 'NotYou Brand', summary: 'An online shop for a US-based clothing brand.', href: 'https://notyoubrand.com/' },
+  { name: 'NotYou Brand', summary: 'An online shop for a US-based clothing brand.', logo: media('cce622_86c7036507c946aa8a1059eb8ba324a5'), href: 'https://notyoubrand.com/' },
   { name: 'Narcist', summary: 'The official logo and custom font for an urban fashion brand.', logo: media('cce622_cfefe3c60df34395a862aa59bb32b7fb') },
 ];
