@@ -15,22 +15,22 @@ const ways = [
     icon: 'calendar',
     title: 'Join your team',
     tag: 'Most common',
-    text: 'I join your existing project as a senior developer, billed hourly. No fixed end date: I stay on for as long as you need, alongside your own people.',
+    text: 'Stevan joins your existing project as a senior developer, billed hourly. No fixed end date: we stay on for as long as you need, alongside your own people.',
   },
   {
     icon: 'laptop',
-    title: 'Build it with me',
-    text: "Starting from scratch? I'll take the product from idea to launch myself, and keep maintaining it afterwards.",
+    title: 'Build it with us',
+    text: "Starting from scratch? We take the product from idea to launch, and keep maintaining it afterwards.",
   },
   {
     icon: 'team',
-    title: 'I assemble the team',
-    text: 'For bigger apps, I put together the right developers, designers and QA from my network, and lead the work as your single point of contact.',
+    title: 'We assemble the team',
+    text: 'For bigger apps, we put together the right developers, designers and QA from our network, with Stevan as your single point of contact.',
   },
   {
     icon: 'network',
-    title: 'I connect you',
-    text: "If another company is a better fit for what you need, I'll introduce you to them. You get the right team, even when it isn't mine.",
+    title: 'We connect you',
+    text: "If another company is a better fit for what you need, we'll introduce you to them. You get the right team, even when it isn't ours.",
   },
 ];
 
@@ -76,10 +76,10 @@ const strengths: Record<string, string> = {
 const network = partners.map((p) => ({ logo: p.logo, name: p.logoAlt, text: strengths[p.logoAlt], href: p.links[0].href }));
 
 const steps = [
-  { title: 'Tell me what you need', text: 'A short call about your product, timeline and budget. No sales pitch.' },
-  { title: 'I assess the fit', text: "I'll tell you honestly whether I should join your team, bring in more people, or point you to a partner." },
+  { title: 'Tell us what you need', text: 'A short call about your product, timeline and budget. No sales pitch.' },
+  { title: 'We assess the fit', text: "We'll tell you honestly whether to join your team, bring in more people, or point you to a partner." },
   { title: 'Work starts, hourly', text: 'Clear hourly rates agreed up front. No long contracts, and you only pay for the time actually spent.' },
-  { title: 'Scale as you go', text: 'Add people, pause, or wrap up at any point. I stay your point of contact throughout.' },
+  { title: 'Scale as you go', text: 'Add people, pause, or wrap up at any point. Stevan stays your point of contact throughout.' },
 ];
 
 ---
@@ -118,7 +118,7 @@ const steps = [
   <section class="section container">
     <div class="section-head">
       <div>
-        <h2 class="h-lg">Apps I've <span class="hl">helped build</span></h2>
+        <h2 class="h-lg">Apps we've <span class="hl">helped build</span></h2>
         <p>Platforms, web and mobile apps, delivered directly or together with partners.</p>
       </div>
       <a class="btn btn-primary" href="/case-studies">All Projects</a>
@@ -161,7 +161,7 @@ const steps = [
       <div class="section-head">
         <div>
           <h2 class="h-lg">The <span class="hl-dark">network</span> behind the work</h2>
-          <p>Trusted companies and specialists I work with, and introduce clients to when they're the better fit.</p>
+          <p>Trusted companies and specialists we work with, and introduce clients to when they're the better fit.</p>
         </div>
         <a class="btn btn-light accent-text" href="/partners">All Partners</a>
       </div>
@@ -198,8 +198,8 @@ const steps = [
     <img src={media('cce622_48e5e8feccb34fe580821d2107417bfc')} alt="Stevan Radovanović" width="340" height="425" loading="lazy" />
     <div>
       <h2 class="h-lg">About <span class="hl">Techtonnik</span></h2>
-      <p>I started Techtonnik to do software development properly: honest communication, clean code and long-term support. Along the way I've worked with dozens of clients and connected many of them with the people best suited to their projects.</p>
-      <p>Today, Techtonnik is how I work: senior development on my side, backed by a network of partners I trust, so every project ends up in the right hands.</p>
+      <p>Techtonnik is a solo software development business, founded and run by Stevan Radovanović. It started with a simple goal: do software development properly, with honest communication, clean code and long-term support. Along the way, Stevan has worked with dozens of clients and connected many of them with the people best suited to their projects.</p>
+      <p>Today, Techtonnik pairs Stevan's senior development work with a network of trusted partners, so every project ends up in the right hands.</p>
       <div class="stats">
         <div><span class="big">25+</span><span>Projects delivered</span></div>
         <div><span class="big">1000+</span><span>Years of combined experience across the network</span></div>
@@ -208,7 +208,7 @@ const steps = [
     </div>
   </section>
 
-  <Cta title="Got a project in mind?" text="Tell me about it, and I'll make sure it ends up with the right team." button="Start a Project" image={ctaBackgrounds.satellite} />
+  <Cta title="Got a project in mind?" text="Tell us about it, and we'll make sure it ends up with the right team." button="Start a Project" image={ctaBackgrounds.satellite} />
 </Base>
 
 <style>
