@@ -84,6 +84,11 @@ const ext = (href: string) => (isExternal(href) ? { target: '_blank', rel: 'noop
           </Tag>
         );
       })}
+      <a class="box link more-box" href="/contact">
+        <h3 class="h-md">&hellip;and many more</h3>
+        <p>Plenty of other projects never made it onto this page. Curious about something specific? Just ask.</p>
+        <span class="go">Get in touch <Icon name="arrow" size={14} /></span>
+      </a>
     </div>
   </section>
 
@@ -128,5 +133,7 @@ const ext = (href: string) => (isExternal(href) ? { target: '_blank', rel: 'noop
   .initial { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 10px; background: rgba(255, 255, 255, .06); font: 700 1.2rem var(--font-head); color: var(--accent); }
   .box h3 { font-size: 1rem; }
   .box p { flex: 1; font-size: .85rem; color: var(--text-muted); }
+  .more-box { justify-content: center; border-style: dashed; background: none; }
+  .more-box h3 { color: var(--accent); }
   .go { display: inline-flex; align-items: center; gap: 6px; margin-top: 6px; color: var(--accent); font-weight: 600; font-size: .82rem; }
 </style>
