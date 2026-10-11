@@ -18,7 +18,13 @@ npm run preview
 - `src/components/` – shared sections (hero, marquee, showcase cards, FAQ, CTA, …)
 - `public/media/`, `public/video/` – images and hero videos pulled from the old site
 
-## Contact form
+## Contact
 
-Submitting the form opens the visitor's email client with a pre-filled message to
-office@techtonnik.com. No form backend is needed.
+The contact page is email-only (office@techtonnik.com): a mailto button, a copy-address
+button, and shortcuts that open an email with the subject pre-filled. There is no form.
+
+## Mockups
+
+Device mockups on the home and partners pages use live-site screenshots in `public/mockups/`.
+Refresh them with `npm run mockups` (or `npm run mockups -- <name>`); sites are listed in
+`scripts/capture-mockups.mjs`.
