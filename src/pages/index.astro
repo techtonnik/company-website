@@ -246,12 +246,19 @@ const steps = [
   @media (max-width: 860px) { .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   @media (max-width: 520px) { .steps { grid-template-columns: 1fr; } }
 
-  .about { display: grid; grid-template-columns: 340px minmax(0, 1fr); gap: clamp(32px, 5vw, 64px); align-items: center; }
-  .about img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: top; border-radius: var(--radius); border: 2px solid var(--accent); box-shadow: var(--glow); }
-  .about p { margin-top: 14px; max-width: 40rem; }
-  .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin-top: 28px; }
-  .stats div { display: flex; flex-direction: column; gap: 4px; font-size: .85rem; color: var(--text-muted); }
-  .big { font: 700 2.6rem/1 var(--font-head); color: var(--text); }
-  @media (max-width: 760px) { .about { grid-template-columns: 1fr; } .about img { max-width: 300px; } .stats { grid-template-columns: 1fr; } }
+  /* Photo on the right, so it doesn't mirror the testimonial card above. */
+  .about { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: clamp(32px, 5vw, 64px); align-items: center; }
+  .about img { order: 2; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: top; border-radius: var(--radius-lg); border: 2px solid var(--accent); box-shadow: var(--glow); }
+  .about p { margin-top: 14px; max-width: 40rem; color: var(--text-muted); }
+  .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 28px; }
+  .stats div { display: flex; flex-direction: column; gap: 6px; padding: 18px; border: 2px solid var(--line); border-radius: var(--radius-lg); background: var(--bg-raised); font-size: .82rem; color: var(--text-muted); }
+  .big { font: 700 2.4rem/1 var(--font-head); color: var(--text); }
+  @media (max-width: 760px) {
+    .about { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+    .about img { order: 0; max-width: 260px; }
+    .about p { margin-inline: auto; }
+    .stats { grid-template-columns: 1fr; width: 100%; }
+    .stats div { align-items: center; }
+  }
 
 </style>
