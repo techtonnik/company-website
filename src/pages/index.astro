@@ -187,8 +187,8 @@ const steps = [
 </Base>
 
 <style>
-  /* Hero fills the first screen, leaving the logo strip visible at the bottom. */
-  :global(main .hero) { min-height: clamp(540px, calc(100svh - 80px), 860px); }
+  /* Hero takes about two-thirds of the screen, so the next section peeks in below the logo strip. */
+  :global(main .hero) { min-height: clamp(460px, 68svh, 620px); }
   :global(main .hero-content) { padding-top: 96px; padding-bottom: 40px; }
   .hero-lead { max-width: 44rem; font-size: clamp(1.05rem, 1.5vw, 1.25rem); text-wrap: pretty; }
   @media (max-width: 640px) { .br-wide { display: none; } }
