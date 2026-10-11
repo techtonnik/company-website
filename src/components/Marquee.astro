@@ -16,7 +16,7 @@ const logomark = '/media/cce622_db2c1869cd9141de94a9d96061c9aa34~mv2.webp';
           ? Array.from({ length: 6 }, () => (
               <span class="word">Techtonnik <img src={logomark} alt="" width="48" height="43" /></span>
             ))
-          : marqueeLogos.map((l) => <img src={l.src} alt={copy === 0 ? l.alt : ''} height="44" loading="lazy" />)}
+          : marqueeLogos.map((l) => <img src={l.src} alt={copy === 0 ? l.alt : ''} data-logo={l.alt} height="44" loading="lazy" />)}
       </div>
     ))}
   </div>
@@ -29,8 +29,8 @@ const logomark = '/media/cce622_db2c1869cd9141de94a9d96061c9aa34~mv2.webp';
   .group { display: flex; align-items: center; gap: 56px; padding-right: 56px; }
   .group img { height: 44px; width: auto; max-width: 240px; object-fit: contain; }
   /* Bold wordmarks read larger than the rest; scale them down to match. */
-  .group img[alt='Cinnamon'] { height: 26px; }
-  .group img[alt='Genroks'] { height: 34px; }
+  .group img[data-logo='Cinnamon'] { height: 26px; }
+  .group img[data-logo='Genroks'] { height: 34px; }
   .wordmark { padding-block: 24px; }
   .wordmark .track { animation-duration: 30s; }
   .word { display: inline-flex; align-items: center; gap: 22px; font: 700 clamp(2rem, 3.6vw, 3rem)/1 var(--font-head); color: rgba(241, 240, 234, .85); white-space: nowrap; }
