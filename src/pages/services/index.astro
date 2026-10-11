@@ -34,16 +34,13 @@ const stackGroups = [
       </div>
     </div>
     <div class="grid grid-3 services">
-      {allServices.map((s) => {
-        const Tag = s.href ? 'a' : 'div';
-        return (
-          <Tag class:list={['card', 'service', { link: s.href }]} href={s.href}>
-            <Icon name={s.icon} size={32} class="s-icon" />
-            <h3 class="h-sm">{s.title} {s.href && <Icon name="external" size={18} class="ext" />}</h3>
-            <p>{s.text}</p>
-          </Tag>
-        );
-      })}
+      {allServices.map((s) => (
+        <div class="card service">
+          <Icon name={s.icon} size={32} class="s-icon" />
+          <h3 class="h-sm">{s.title}</h3>
+          <p>{s.text}</p>
+        </div>
+      ))}
     </div>
   </section>
 
@@ -102,11 +99,7 @@ const stackGroups = [
 
   .service { display: flex; flex-direction: column; gap: 12px; }
   .service :global(.s-icon) { color: var(--accent); }
-  .service h3 { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
   .service p { font-size: .92rem; color: var(--text-muted); }
-  .service.link { transition: transform .2s, box-shadow .2s; }
-  .service.link:hover { transform: translateY(-3px); box-shadow: 0 0 28px rgba(3,169,244,.7); }
-  .service :global(.ext) { color: var(--accent); }
 
   .models { display: flex; flex-direction: column; gap: 16px; }
   .model { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 40px; align-items: center; padding: clamp(24px, 3.5vw, 40px); border-radius: var(--radius-lg); background: var(--bg-raised); border: 2px solid var(--line); }
