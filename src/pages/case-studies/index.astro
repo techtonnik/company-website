@@ -2,28 +2,133 @@
 import Base from '../../layouts/Base.astro';
 import Hero from '../../components/Hero.astro';
 import Marquee from '../../components/Marquee.astro';
-import Showcase from '../../components/Showcase.astro';
 import Cta from '../../components/Cta.astro';
 import Icon from '../../components/Icon.astro';
+import DeviceMockup from '../../components/DeviceMockup.astro';
 import { heroVideos, ctaBackgrounds } from '../../data/site';
-import { caseStudies } from '../../data/showcase';
+import { featured, moreProjects } from '../../data/projects';
+import { isExternal } from '../../lib/rich';
+
+const ext = (href: string) => (isExternal(href) ? { target: '_blank', rel: 'noopener' } : {});
 ---
-<Base title="Case Studies | Techtonnik" description="No entry on this list is more important than the others - every single client of ours is our top priority!">
+<Base title="Case Studies | Techtonnik" description="Apps and platforms we've helped build, from global reservation systems to fintech and AI.">
   <Hero video={heroVideos.space} short>
     <h1 class="h-lg">Creating Success Stories Around Us</h1>
-    <p class="lead">No entry on this list is more important than the others - every single client of ours is our top priority!</p>
+    <p class="lead">Apps and platforms we've helped build, directly or together with our partners.</p>
     <div class="btn-row">
       <a class="btn btn-primary" href="/contact">Become a Success Story</a>
       <a class="btn btn-ghost" href="/services">Services <Icon name="chevrons" size={20} /></a>
     </div>
   </Hero>
   <Marquee />
-  <div class="container list">
-    {caseStudies.map((item) => <Showcase item={item} />)}
-  </div>
-  <Cta title="Kickstart your project!" image={ctaBackgrounds.earth} />
+
+  <section class="section container featured">
+    {featured.map((p, i) => (
+      <article class:list={['project', { flip: i % 2 === 1 }]}>
+        <div class="shot">
+          <DeviceMockup
+            desktop={`/mockups/${p.mockup}-desktop.jpg`}
+            mobile={`/mockups/${p.mockup}-mobile.jpg`}
+            url={p.site}
+            label={p.label}
+            tint={p.tint}
+            alt={`${p.title} ${p.site ? 'website' : 'app'}`}
+          />
+        </div>
+        <div class="body">
+          <p class="scope">{p.scope}</p>
+          <h2 class="h-lg">{p.title}</h2>
+          {(p.via || p.client) && (
+            <p class="credit">
+              {p.via && <>via <a href={p.via.href} target="_blank" rel="noopener">{p.via.name}</a></>}
+              {p.client && <>for <a href={p.client.href} target="_blank" rel="noopener">{p.client.name}</a></>}
+            </p>
+          )}
+          <h3 class="tagline">{p.tagline}</h3>
+          <p class="text">{p.text}</p>
+          <div class="links">
+            {p.caseStudy && <a class="btn btn-primary" href={p.caseStudy}>Read Case Study</a>}
+            {p.site && (
+              <a class:list={['btn', p.caseStudy ? 'btn-ghost' : 'btn-primary']} href={p.site} target="_blank" rel="noopener">
+                Visit Website {p.caseStudy && <Icon name="external" size={16} />}
+              </a>
+            )}
+            {!p.site && p.href && <a class="btn btn-primary" href={p.href}>See Product</a>}
+          </div>
+        </div>
+      </article>
+    ))}
+  </section>
+
+  <section class="section container">
+    <div class="section-head">
+      <div>
+        <h2 class="h-lg">More <span class="hl">projects</span></h2>
+        <p>Websites, shops and smaller builds from over the years.</p>
+      </div>
+    </div>
+    <div class="more">
+      {moreProjects.map((p) => {
+        const Tag = p.href ? 'a' : 'div';
+        return (
+          <Tag class:list={['box', { link: p.href }]} href={p.href} {...(p.href ? ext(p.href) : {})}>
+            <div class="logo">
+              {p.logo ? <img src={p.logo} alt="" loading="lazy" /> : <span class="initial" aria-hidden="true">{p.name[0]}</span>}
+            </div>
+            <h3 class="h-sm">{p.name}</h3>
+            <p>{p.summary}</p>
+            {p.href && (
+              <span class="go">
+                {p.href.startsWith('/case-studies/') ? 'Read case study' : 'Visit website'}
+                <Icon name={isExternal(p.href) ? 'external' : 'arrow'} size={14} />
+              </span>
+            )}
+          </Tag>
+        );
+      })}
+    </div>
+  </section>
+
+  <Cta title="Kickstart your project!" text="Tell us about it, and we'll make sure it ends up with the right team." button="Get in Touch" image={ctaBackgrounds.earth} />
 </Base>
 
 <style>
-  .list { display: flex; flex-direction: column; gap: 44px; padding-block: 56px; }
+  :global(main .hero.short) { min-height: 400px; }
+  :global(main .hero-content) { padding-top: 96px; padding-bottom: 40px; }
+
+  .featured { display: flex; flex-direction: column; gap: 20px; }
+  .project {
+    display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: clamp(20px, 3.5vw, 48px); align-items: center;
+    padding: clamp(14px, 1.6vw, 20px); border: 2px solid var(--line); border-radius: var(--radius-lg); background: var(--bg-raised);
+    transition: border-color .2s;
+  }
+  .project:hover { border-color: var(--accent); }
+  .flip .shot { order: 2; }
+  .shot { border-radius: var(--radius); overflow: hidden; }
+  .body { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding: 8px clamp(4px, 1.5vw, 16px); }
+  .scope { font-size: .75rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--accent); }
+  .credit { margin-top: -2px; font-size: .95rem; color: var(--text-muted); }
+  .credit a { color: var(--accent); font-weight: 600; }
+  .credit a:hover { text-decoration: underline; }
+  .tagline { margin-top: 6px; font-size: 1.15rem; font-weight: 500; }
+  .text { font-size: .92rem; color: var(--text-muted); }
+  .links { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px; margin-top: 10px; }
+  .links .btn-ghost { padding-inline: 0; }
+  @media (max-width: 860px) {
+    .project { grid-template-columns: 1fr; }
+    .flip .shot { order: 0; }
+  }
+
+  .more { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+  @media (max-width: 1080px) { .more { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (max-width: 760px) { .more { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 480px) { .more { grid-template-columns: 1fr; } }
+  .box { display: flex; flex-direction: column; gap: 6px; padding: 20px; border: 2px solid var(--line); border-radius: var(--radius-lg); background: var(--bg-raised); transition: border-color .2s, transform .2s; }
+  .box.link:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .logo { display: flex; align-items: center; height: 44px; margin-bottom: 8px; }
+  .logo img { max-height: 40px; max-width: 150px; width: auto; object-fit: contain; object-position: left; }
+  .initial { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 10px; background: rgba(255, 255, 255, .06); font: 700 1.2rem var(--font-head); color: var(--accent); }
+  .box h3 { font-size: 1rem; }
+  .box p { flex: 1; font-size: .85rem; color: var(--text-muted); }
+  .go { display: inline-flex; align-items: center; gap: 6px; margin-top: 6px; color: var(--accent); font-weight: 600; font-size: .82rem; }
 </style>

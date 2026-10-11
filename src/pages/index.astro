@@ -8,6 +8,7 @@ import DeviceMockup from '../components/DeviceMockup.astro';
 import Cta from '../components/Cta.astro';
 import { heroVideos, ctaBackgrounds, media } from '../data/site';
 import { partners } from '../data/showcase';
+import { featured, featuredHref } from '../data/projects';
 import { isExternal } from '../lib/rich';
 
 const ways = [
@@ -34,33 +35,7 @@ const ways = [
   },
 ];
 
-type Featured = {
-  title: string;
-  tagline: string;
-  scope: string;
-  /** Live site, shown in the mockup's address bar. Omit for apps without a public site. */
-  site?: string;
-  /** Where the card links; defaults to the live site. */
-  href?: string;
-  /** Screenshot basename in public/mockups (see scripts/capture-mockups.mjs). */
-  mockup: string;
-  tint: string;
-  via?: { name: string; href: string };
-  /** Client the project was built for, when it isn't the product owner itself. */
-  client?: { name: string; href: string };
-  /** Address-bar text when there's no public URL to show. */
-  label?: string;
-};
-const featured: Featured[] = [
-  { title: 'Ontopo', tagline: 'Book a Table at Restaurants Around the World', scope: 'Frontend · Backend · QA', site: 'https://ontopo.com/en/rs/belgrade', mockup: 'ontopo', tint: '#0f3d1c', via: { name: 'CodeIT', href: 'https://www.codeit.rs/' } },
-  { title: 'Zirtue', tagline: 'Bill Pay Loans Powered by Friends & Family', scope: 'Fintech platform', site: 'https://www.zirtue.com/', mockup: 'zirtue', tint: '#0b3a8c', via: { name: 'Cinnamon', href: 'https://www.cinnamon.agency/' } },
-  { title: 'Tennilytics', tagline: 'Experience Tennis Like The Pros', scope: 'Web app · Mobile app · Website', site: 'https://www.tennilytics.com/', mockup: 'tennilytics', tint: '#2a3a12' },
-  { title: 'SerbLink', tagline: 'Connecting Serbian Professionals!', scope: 'Full-stack platform', site: 'https://serblink.org/', mockup: 'serblink', tint: '#0a2f8f' },
-  { title: 'Super Stan', tagline: 'Find Your Dream Home!', scope: 'Web app · UI/UX', site: 'https://www.superstanbg.rs/', href: '/case-studies/super-stan', mockup: 'superstan', tint: '#6e1414' },
-  { title: 'Synergy X', tagline: 'Tailor-Made Marketing Solution', scope: 'Web app · Marketing automation', href: '/products', mockup: 'synergyx', label: 'Synergy X', tint: '#1c2390', client: { name: 'AI Digital', href: 'https://www.aidigital.com/' } },
-];
 const linkAttrs = (href: string) => (isExternal(href) ? { target: '_blank', rel: 'noopener' } : {});
-const cardHref = (app: Featured) => app.href ?? app.site ?? '/case-studies';
 
 const strengths: Record<string, string> = {
   CodeIT: 'Established software company',
@@ -126,7 +101,7 @@ const steps = [
     <div class="apps">
       {featured.map((app) => (
         <article class="app">
-          <a href={cardHref(app)} {...linkAttrs(cardHref(app))} class="app-media">
+          <a href={featuredHref(app)} {...linkAttrs(featuredHref(app))} class="app-media">
             <DeviceMockup
               desktop={`/mockups/${app.mockup}-desktop.jpg`}
               mobile={`/mockups/${app.mockup}-mobile.jpg`}
@@ -139,7 +114,7 @@ const steps = [
           <div class="app-body">
             <p class="scope">{app.scope}</p>
             <h3 class="h-sm">
-              <a href={cardHref(app)} {...linkAttrs(cardHref(app))}>{app.title}</a>
+              <a href={featuredHref(app)} {...linkAttrs(featuredHref(app))}>{app.title}</a>
               {app.via && (
                 <span class="via">via <a href={app.via.href} target="_blank" rel="noopener">{app.via.name}</a></span>
               )}
