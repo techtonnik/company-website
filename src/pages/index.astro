@@ -38,14 +38,18 @@ type Featured = {
   title: string;
   tagline: string;
   scope: string;
-  /** Live site, shown in the mockup's address bar. */
-  site: string;
+  /** Live site, shown in the mockup's address bar. Omit for apps without a public site. */
+  site?: string;
   /** Where the card links; defaults to the live site. */
   href?: string;
   /** Screenshot basename in public/mockups (see scripts/capture-mockups.mjs). */
   mockup: string;
   tint: string;
   via?: { name: string; href: string };
+  /** Client the project was built for, when it isn't the product owner itself. */
+  client?: string;
+  /** Set false when there's no mobile screenshot. */
+  mobile?: boolean;
 };
 const featured: Featured[] = [
   { title: 'Ontopo', tagline: 'Book a Table at Restaurants Around the World', scope: 'Frontend · Backend · QA', site: 'https://ontopo.com/en/rs/belgrade', mockup: 'ontopo', tint: '#0f3d1c', via: { name: 'CodeIT', href: 'https://www.codeit.rs/' } },
@@ -53,8 +57,10 @@ const featured: Featured[] = [
   { title: 'Tennilytics', tagline: 'Experience Tennis Like The Pros', scope: 'Web app · Mobile app · Website', site: 'https://www.tennilytics.com/', mockup: 'tennilytics', tint: '#2a3a12' },
   { title: 'SerbLink', tagline: 'Connecting Serbian Professionals!', scope: 'Full-stack platform', site: 'https://serblink.org/', mockup: 'serblink', tint: '#0a2f8f' },
   { title: 'Super Stan', tagline: 'Find Your Dream Home!', scope: 'Web app · UI/UX', site: 'https://www.superstanbg.rs/', href: '/case-studies/super-stan', mockup: 'superstan', tint: '#6e1414' },
+  { title: 'Synergy X', tagline: 'Tailor-Made Marketing Solution', scope: 'Web app · Marketing automation', href: '/products', mockup: 'synergyx', tint: '#27347f', client: 'AI Digital', mobile: false },
 ];
 const linkAttrs = (href: string) => (isExternal(href) ? { target: '_blank', rel: 'noopener' } : {});
+const cardHref = (app: Featured) => app.href ?? app.site ?? '/case-studies';
 
 const strengths: Record<string, string> = {
   CodeIT: 'Established software company',
@@ -122,10 +128,10 @@ const steps = [
     <div class="apps">
       {featured.map((app) => (
         <article class="app">
-          <a href={app.href ?? app.site} {...linkAttrs(app.href ?? app.site)} class="app-media">
+          <a href={cardHref(app)} {...linkAttrs(cardHref(app))} class="app-media">
             <DeviceMockup
               desktop={`/mockups/${app.mockup}-desktop.jpg`}
-              mobile={`/mockups/${app.mockup}-mobile.jpg`}
+              mobile={app.mobile === false ? undefined : `/mockups/${app.mockup}-mobile.jpg`}
               url={app.site}
               tint={app.tint}
               alt={`${app.title} website`}
@@ -134,10 +140,11 @@ const steps = [
           <div class="app-body">
             <p class="scope">{app.scope}</p>
             <h3 class="h-sm">
-              <a href={app.href ?? app.site} {...linkAttrs(app.href ?? app.site)}>{app.title}</a>
+              <a href={cardHref(app)} {...linkAttrs(cardHref(app))}>{app.title}</a>
               {app.via && (
                 <span class="via">via <a href={app.via.href} target="_blank" rel="noopener">{app.via.name}</a></span>
               )}
+              {app.client && <span class="via">for <strong>{app.client}</strong></span>}
             </h3>
             <p>{app.tagline}</p>
           </div>
@@ -233,6 +240,7 @@ const steps = [
   .app-body h3 > a:hover { color: var(--accent); }
   .via { font: 500 .85rem var(--font-body); color: var(--text-muted); }
   .via a { color: var(--accent); font-weight: 600; }
+  .via strong { color: var(--text); font-weight: 600; }
   .via a:hover { text-decoration: underline; }
   .app-body p:last-child { font-size: .9rem; color: var(--text-muted); }
   .scope { font-size: .75rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--accent); }

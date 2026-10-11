@@ -1,23 +1,26 @@
 ---
 // Browser window + phone mockup drawn in CSS around live-site screenshots.
 // Screenshots live in public/mockups and are refreshed with `npm run mockups`.
+// Without `url`, the screen is shown without a browser address bar (e.g. desktop apps).
 interface Props {
   desktop: string;
   mobile?: string;
-  url: string;
+  url?: string;
   /** Backdrop color behind the devices. */
   tint?: string;
   alt: string;
 }
 const { desktop, mobile, url, tint = '#0b2a4a', alt } = Astro.props;
-const host = new URL(url).hostname.replace(/^www\./, '');
+const host = url && new URL(url).hostname.replace(/^www\./, '');
 ---
 <div class="mockup" style={`--tint:${tint}`}>
   <div class="browser">
-    <div class="chrome" aria-hidden="true">
-      <span class="dots"><i></i><i></i><i></i></span>
-      <span class="address">{host}</span>
-    </div>
+    {host && (
+      <div class="chrome" aria-hidden="true">
+        <span class="dots"><i></i><i></i><i></i></span>
+        <span class="address">{host}</span>
+      </div>
+    )}
     <img src={desktop} alt={alt} loading="lazy" width="1440" height="900" />
   </div>
   {mobile && (
