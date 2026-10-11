@@ -1,0 +1,87 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Marquee from '../components/Marquee.astro';
+import Icon from '../components/Icon.astro';
+import { heroVideos, ctaBackgrounds } from '../data/site';
+import { partners } from '../data/showcase';
+import { isExternal } from '../lib/rich';
+
+const ext = (href: string) => (isExternal(href) ? { target: '_blank', rel: 'noopener' } : {});
+---
+<Base title="Partners | techtonnik" description="Our partner list keeps expanding - Discover why that’s the case!">
+  <Hero video={heroVideos.space} short>
+    <h1 class="h-lg">Trusted Partners, Shared Success!</h1>
+    <p class="lead">Our partner list keeps expanding - Discover why that’s the case!</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/contact">Become Our Partner!</a>
+      <a class="btn btn-ghost" href="/case-studies">Case Studies <Icon name="chevrons" size={20} /></a>
+    </div>
+  </Hero>
+  <Marquee />
+
+  <div class="container list">
+    {partners.map((p, i) => (
+      <article class:list={['partner', { flip: i % 2 === 1 }]}>
+        <div class="col media-col">
+          <div class="panel shot"><img src={p.shot} alt={`${p.logoAlt} website preview`} loading="lazy" /></div>
+          <figure class="quote">
+            <img src={p.avatar} alt="" width="154" height="157" loading="lazy" />
+            <figcaption>
+              <blockquote>{p.quote}</blockquote>
+              <p class="hl">{p.author}</p>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="col info-col">
+          <div class="panel logo"><img src={p.logo} alt={p.logoAlt} loading="lazy" /></div>
+          <div class="panel info">
+            <h2 class="h-md">{p.title}</h2>
+            <p>{p.text}</p>
+            <div class="btn-row">
+              <a class="btn btn-light accent-text" href={p.links[0].href} {...ext(p.links[0].href)}>{p.links[0].label}</a>
+              <a class="btn btn-ghost on-dark" href={p.links[1].href} {...ext(p.links[1].href)}>{p.links[1].label} <Icon name="arrow" size={20} /></a>
+            </div>
+          </div>
+        </div>
+      </article>
+    ))}
+  </div>
+
+  <section class="cta-strip">
+    <img src={ctaBackgrounds.earth} alt="" loading="lazy" />
+    <div class="container inner">
+      <h2 class="h-lg">Are YOU Our Next Partner?</h2>
+      <a class="btn btn-light accent-text" href="/contact">Contact Us</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .list { display: flex; flex-direction: column; gap: 48px; padding-block: 56px; }
+  .partner { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .col { display: flex; flex-direction: column; gap: 14px; }
+  .flip .media-col { order: 2; }
+  .panel { border: 2px solid var(--accent); border-radius: var(--radius); background: var(--accent); box-shadow: var(--glow-blue); overflow: hidden; }
+  .shot { aspect-ratio: 635 / 443; background: #0a5cf5; }
+  .shot img { width: 100%; height: 100%; object-fit: cover; }
+  .logo { display: grid; place-items: center; min-height: 107px; padding: 14px 28px; }
+  .logo img { max-height: 80px; width: auto; object-fit: contain; }
+  .info { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 40px clamp(20px, 4vw, 48px); }
+  .info p { margin-top: 18px; font-size: .92rem; }
+  .info .btn-row { justify-content: center; }
+  .quote { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 16px; align-items: center; margin: 0; }
+  .quote img { width: 96px; height: 98px; object-fit: cover; border: 2px solid var(--accent); border-radius: 6px; }
+  .quote blockquote { margin: 0; font-size: .95rem; }
+  .quote p { margin-top: 10px; font-size: .82rem; font-weight: 600; }
+  @media (max-width: 820px) {
+    .partner { grid-template-columns: 1fr; }
+    .flip .media-col { order: 0; }
+  }
+
+  .cta-strip { position: relative; isolation: isolate; overflow: hidden; }
+  .cta-strip img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+  .cta-strip::before { content: ''; position: absolute; inset: 0; z-index: -1; background: rgba(3, 169, 244, .55); }
+  .cta-strip .inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding-block: 64px; }
+  .cta-strip .btn { min-width: 240px; }
+</style>

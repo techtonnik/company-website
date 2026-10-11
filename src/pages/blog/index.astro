@@ -1,0 +1,20 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import PostCard from '../../components/PostCard.astro';
+
+const posts = (await getCollection('blog')).sort((a, b) => +b.data.pubDate - +a.data.pubDate);
+---
+<Base title="Blog | techtonnik" description="Insights, stories, updates from the techtonnik team.">
+  <section class="section container page">
+    <h1 class="h-lg">Insights, <span class="hl">stories,</span> updates!</h1>
+    <div class="grid grid-3 posts">
+      {posts.map((post) => <PostCard post={post} />)}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .page { padding-top: 150px; }
+  .posts { margin-top: 48px; }
+</style>

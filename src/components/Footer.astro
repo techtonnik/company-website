@@ -1,0 +1,41 @@
+---
+import { footerNav, site } from '../data/site';
+import Icon from './Icon.astro';
+
+const path = Astro.url.pathname.replace(/\/$/, '');
+---
+<footer class="site-footer">
+  <div class="container">
+    <div class="top">
+      <a href="/" class="wordmark">techtonnik</a>
+      <img src={site.logomark} alt="" width="74" height="66" loading="lazy" />
+    </div>
+    <div class="bottom">
+      <ul>
+        {footerNav.map((item) => (
+          <li><a href={item.href} class:list={{ active: path === item.href }}>{item.label}</a></li>
+        ))}
+      </ul>
+      <div class="social">
+        <a href={`mailto:${site.email}`} aria-label="Email us"><Icon name="mail" size={44} /></a>
+        <a href={site.linkedin} aria-label="techtonnik on LinkedIn" target="_blank" rel="noopener"><Icon name="linkedin" size={40} /></a>
+      </div>
+    </div>
+    <p class="legal">© {new Date().getFullYear()} techtonnik · <a href="/privacy-policy">Privacy Policy</a></p>
+  </div>
+</footer>
+
+<style>
+  .site-footer { padding: 72px 0 32px; background: var(--bg); }
+  .top { display: flex; align-items: center; justify-content: space-between; padding-bottom: 32px; border-bottom: 1px solid var(--accent); }
+  .wordmark { font: 700 clamp(2.4rem, 5vw, 3.4rem)/1 var(--font-head); }
+  .top img { width: 74px; height: auto; }
+  .bottom { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding-top: 28px; }
+  ul { display: flex; flex-wrap: wrap; gap: 8px 30px; list-style: none; margin: 0; padding: 0; }
+  ul a { font: 500 1.15rem var(--font-head); transition: color .2s; }
+  ul a:hover, ul a.active { color: var(--accent); }
+  .social { display: flex; align-items: center; gap: 22px; }
+  .social a:hover { color: var(--accent); }
+  .legal { margin-top: 32px; font-size: .85rem; color: var(--text-muted); }
+  .legal a { text-decoration: underline; }
+</style>

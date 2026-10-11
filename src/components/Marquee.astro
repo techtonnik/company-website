@@ -1,0 +1,36 @@
+---
+import { marqueeLogos } from '../data/site';
+
+interface Props {
+  /** Repeated "techtonnik" wordmark band instead of client logos. */
+  wordmark?: boolean;
+}
+const { wordmark = false } = Astro.props;
+const logomark = '/media/cce622_db2c1869cd9141de94a9d96061c9aa34~mv2.webp';
+---
+<div class:list={['marquee', { wordmark }]} aria-hidden={wordmark ? 'true' : undefined}>
+  <div class="track">
+    {[0, 1].map((copy) => (
+      <div class="group" aria-hidden={copy === 1 ? 'true' : undefined}>
+        {wordmark
+          ? Array.from({ length: 6 }, () => (
+              <span class="word">techtonnik <img src={logomark} alt="" width="48" height="43" /></span>
+            ))
+          : marqueeLogos.map((l) => <img src={l.src} alt={copy === 0 ? l.alt : ''} height="44" loading="lazy" />)}
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .marquee { background: var(--accent); overflow: hidden; padding-block: 18px; }
+  .track { display: flex; width: max-content; animation: scroll 50s linear infinite; }
+  .marquee:hover .track { animation-play-state: paused; }
+  .group { display: flex; align-items: center; gap: 56px; padding-right: 56px; }
+  .group img { height: 44px; width: auto; max-width: 240px; object-fit: contain; }
+  .wordmark { padding-block: 24px; }
+  .wordmark .track { animation-duration: 30s; }
+  .word { display: inline-flex; align-items: center; gap: 22px; font: 700 clamp(2rem, 3.6vw, 3rem)/1 var(--font-head); color: rgba(241, 240, 234, .85); white-space: nowrap; }
+  .word img { height: 44px; filter: brightness(0) invert(1); opacity: .85; }
+  @keyframes scroll { to { transform: translateX(-50%); } }
+</style>

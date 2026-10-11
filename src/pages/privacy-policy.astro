@@ -1,0 +1,78 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { site } from '../data/site';
+---
+<Base title="Privacy Policy | techtonnik">
+  <section class="section container page">
+    <a class="back" href="/contact"><Icon name="arrow-left" size={18} /> Back to Contact</a>
+    <div class="prose">
+      <h1 class="h-lg">Privacy Policy</h1>
+
+      <h2>Introduction</h2>
+      <p>Welcome to techtonnik ("we", "our", "us"). We are committed to protecting and respecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website, use our services, or interact with us in other ways. Please read this policy carefully to understand our views and practices regarding your personal data and how we will treat it.</p>
+
+      <h2>Information We Collect</h2>
+      <h3>Personal Data</h3>
+      <p>We may collect the following types of personal information:</p>
+      <ul>
+        <li><strong>Contact Information:</strong> Name and email address provided through our contact form.</li>
+      </ul>
+      <h3>Non-Personal Data</h3>
+      <p>We may collect non-personal information that cannot be used to identify you individually. This may include:</p>
+      <ul>
+        <li><strong>Aggregated Data:</strong> Statistical or demographic data for any purpose.</li>
+        <li><strong>Technical Data:</strong> Information about your device, including hardware and software specifications, IP address, browser type, access times, and pages viewed.</li>
+      </ul>
+
+      <h2>How We Use Your Information</h2>
+      <p>We use the information we collect in the following ways:</p>
+      <ul>
+        <li><strong>To Provide Services:</strong> To respond to your inquiries and provide quotes.</li>
+        <li><strong>To Improve Our Services:</strong> To understand how our services are used and make improvements.</li>
+        <li><strong>To Communicate with You:</strong> To send administrative information, updates, and support messages.</li>
+        <li><strong>For Marketing and Advertising:</strong> To send newsletters and promotional materials that may be of interest to you.</li>
+      </ul>
+
+      <h2>Disclosure of Your Information</h2>
+      <p>We may share your information with third parties in the following circumstances:</p>
+      <ul>
+        <li><strong>Service Providers:</strong> With vendors and service providers who need access to your information to perform services on our behalf.</li>
+        <li><strong>Legal Obligations:</strong> If required to do so by law or in response to a legal process.</li>
+        <li><strong>Business Transfers:</strong> In connection with a merger, sale of assets, financing, or acquisition of all or a portion of our business by another company.</li>
+      </ul>
+
+      <h2>Data Security</h2>
+      <p>We use appropriate technical and organizational measures to protect the personal information that we collect and process. While we strive to protect your personal data, no security system is impenetrable, and we cannot guarantee the security of our systems 100%.</p>
+
+      <h2>Data Retention</h2>
+      <p>We will retain your personal information for as long as is necessary for the purposes set out in this Privacy Policy, unless a longer retention period is required or permitted by law.</p>
+
+      <h2>Your Data Protection Rights</h2>
+      <p>Depending on your location, you may have the following rights regarding your personal data:</p>
+      <ul>
+        <li><strong>Access:</strong> The right to request copies of your personal data.</li>
+        <li><strong>Rectification:</strong> The right to request that we correct any information you believe is inaccurate.</li>
+        <li><strong>Erasure:</strong> The right to request that we delete your personal data, under certain conditions.</li>
+        <li><strong>Restriction of Processing:</strong> The right to request that we restrict the processing of your personal data, under certain conditions.</li>
+        <li><strong>Objection to Processing:</strong> The right to object to our processing of your personal data, under certain conditions.</li>
+        <li><strong>Data Portability:</strong> The right to request that we transfer the data that we have collected to another organization, or directly to you, under certain conditions.</li>
+      </ul>
+
+      <h2>Changes to This Privacy Policy</h2>
+      <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on our website. You are advised to review this Privacy Policy periodically for any changes.</p>
+      <p>If you have any questions about this Privacy Policy, please contact us at:</p>
+      <ul>
+        <li><strong>Email:</strong> <a href={`mailto:${site.email}`}>{site.email}</a></li>
+      </ul>
+      <p><strong>Effective Date:</strong> 19.07.2024.</p>
+      <p>By using our services, you agree to the terms of this Privacy Policy. If you do not agree with these terms, please do not use our services.</p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .page { padding-top: 140px; }
+  .back { display: inline-flex; align-items: center; gap: 8px; color: var(--accent); font-weight: 600; font-size: .9rem; margin-bottom: 32px; }
+  .prose h1 { margin-bottom: .6em; }
+</style>

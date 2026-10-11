@@ -1,0 +1,58 @@
+---
+import { testimonials } from '../data/site';
+import Icon from './Icon.astro';
+---
+<section class="section container">
+  <div class="section-head">
+    <h2 class="h-lg">Proof that our work is <span class="hl">top-notch</span></h2>
+    <a class="btn btn-primary" href="/contact">Let's Work</a>
+  </div>
+  <div class="carousel" data-carousel>
+    <div class="slides">
+      {testimonials.map((t, i) => (
+        <figure class="slide" data-slide hidden={i !== 0}>
+          <img src={t.img} alt={t.name} width="222" height="222" loading="lazy" />
+          <figcaption>
+            <h3 class="h-md">{t.name}</h3>
+            <p class="role h-md">{t.role}</p>
+            <blockquote>{t.quote}</blockquote>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+    <div class="controls">
+      <button type="button" data-prev aria-label="Previous testimonial"><Icon name="arrow-left" size={30} /></button>
+      <button type="button" data-next aria-label="Next testimonial"><Icon name="arrow" size={30} /></button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .carousel { position: relative; }
+  .slide { display: grid; grid-template-columns: 222px minmax(0, 1fr); gap: 40px; margin: 0; min-height: 240px; padding-right: 140px; }
+  .slide[hidden] { display: none; }
+  .slide img { width: 222px; height: 222px; object-fit: cover; border: 2px solid var(--accent); border-radius: 6px; box-shadow: var(--glow); }
+  .role { color: var(--accent); margin-top: 4px; font-family: var(--font-head); font-weight: 600; }
+  blockquote { margin: 18px 0 0; max-width: 40rem; font-weight: 500; }
+  .controls { position: absolute; top: 0; right: 0; display: flex; gap: 20px; }
+  .controls button { background: none; border: 0; color: var(--accent); cursor: pointer; padding: 6px; transition: transform .15s; }
+  .controls button:hover { transform: scale(1.12); }
+  @media (max-width: 720px) {
+    .slide { grid-template-columns: 1fr; gap: 20px; padding-right: 0; }
+    .slide img { width: 140px; height: 140px; }
+    .controls { position: static; margin-top: 20px; }
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-carousel]').forEach((root) => {
+    const slides = [...root.querySelectorAll<HTMLElement>('[data-slide]')];
+    let i = 0;
+    const show = (n: number) => {
+      i = (n + slides.length) % slides.length;
+      slides.forEach((s, j) => (s.hidden = j !== i));
+    };
+    root.querySelector('[data-prev]')!.addEventListener('click', () => show(i - 1));
+    root.querySelector('[data-next]')!.addEventListener('click', () => show(i + 1));
+  });
+</script>

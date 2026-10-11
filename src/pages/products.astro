@@ -1,0 +1,29 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Marquee from '../components/Marquee.astro';
+import Showcase from '../components/Showcase.astro';
+import Cta from '../components/Cta.astro';
+import Icon from '../components/Icon.astro';
+import { heroVideos, ctaBackgrounds } from '../data/site';
+import { products } from '../data/showcase';
+---
+<Base title="Products | techtonnik" description="A little insight into what we're cooking behind the scenes!">
+  <Hero video={heroVideos.space} short>
+    <h1 class="h-lg">Empowering Innovation from Within</h1>
+    <p class="lead">A little insight into what we're cooking behind the scenes!</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/contact">Schedule a demo!</a>
+      <a class="btn btn-ghost" href="/services">Services <Icon name="chevrons" size={20} /></a>
+    </div>
+  </Hero>
+  <Marquee />
+  <div class="container list">
+    {products.map((item) => <Showcase item={item} />)}
+  </div>
+  <Cta title="Ideas keep coming!" text="Stay tuned with our future plans!" image={ctaBackgrounds.earth} />
+</Base>
+
+<style>
+  .list { display: flex; flex-direction: column; gap: 44px; padding-block: 56px; }
+</style>

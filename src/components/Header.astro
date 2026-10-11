@@ -1,0 +1,76 @@
+---
+import { nav, site } from '../data/site';
+import Icon from './Icon.astro';
+
+const path = Astro.url.pathname.replace(/\/$/, '');
+const isActive = (href: string) => path === href || path.startsWith(href + '/') || (href === '/blog' && path.startsWith('/post'));
+---
+<header class="site-header" data-header>
+  <div class="container bar">
+    <a href="/" class="logo" aria-label="techtonnik home">
+      <img src={site.logo} alt="techtonnik" width="190" height="42" />
+    </a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="site-nav" data-menu-toggle>
+      <span class="sr-only">Menu</span>
+      <Icon name="menu" class="i-open" />
+      <Icon name="close" class="i-close" />
+    </button>
+    <nav id="site-nav" class="nav" data-nav>
+      <ul>
+        {nav.map((item) => (
+          <li><a href={item.href} class:list={{ active: isActive(item.href) }}>{item.label}</a></li>
+        ))}
+      </ul>
+      <a href="/contact" class="btn btn-primary">Contact Us</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: fixed; inset: 0 0 auto; z-index: 50;
+    transition: background .25s ease, backdrop-filter .25s ease;
+  }
+  .site-header.scrolled, .site-header.open { background: rgba(0, 4, 13, .82); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+  .bar { display: flex; align-items: center; justify-content: space-between; height: 84px; }
+  .logo img { width: 190px; height: auto; }
+  .nav { display: flex; align-items: center; gap: 32px; }
+  .nav ul { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; }
+  .nav ul a { font-weight: 500; font-size: 1.02rem; transition: color .2s; }
+  .nav ul a:hover, .nav ul a.active { color: var(--accent); }
+  .nav .btn { min-width: 220px; }
+  .menu-toggle { display: none; background: none; border: 0; color: var(--text); padding: 8px; cursor: pointer; }
+  .menu-toggle :global(.i-close) { display: none; }
+
+  @media (max-width: 1080px) {
+    .nav .btn { min-width: 0; }
+    .nav ul { gap: 20px; }
+  }
+  @media (max-width: 900px) {
+    .menu-toggle { display: block; }
+    .bar { height: 68px; }
+    .logo img { width: 150px; }
+    .nav {
+      position: fixed; inset: 68px 0 auto; flex-direction: column; align-items: stretch; gap: 24px;
+      padding: 24px var(--gutter) 32px; background: rgba(0, 4, 13, .96);
+      transform: translateY(-8px); opacity: 0; visibility: hidden; transition: all .2s ease;
+    }
+    .nav ul { flex-direction: column; gap: 4px; }
+    .nav ul a { display: block; padding: 10px 0; font-size: 1.2rem; }
+    .open .nav { transform: none; opacity: 1; visibility: visible; }
+    .open .menu-toggle :global(.i-open) { display: none; }
+    .open .menu-toggle :global(.i-close) { display: block; }
+  }
+</style>
+
+<script>
+  const header = document.querySelector<HTMLElement>('[data-header]')!;
+  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]')!;
+  const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 20);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+  toggle.addEventListener('click', () => {
+    const open = header.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+</script>

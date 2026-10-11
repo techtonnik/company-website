@@ -1,0 +1,74 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import Marquee from '../../components/Marquee.astro';
+import Cta from '../../components/Cta.astro';
+import Icon from '../../components/Icon.astro';
+import { heroVideos, ctaBackgrounds } from '../../data/site';
+import { allServices, modelDetails } from '../../data/services';
+---
+<Base title="Services | techtonnik" description="Services tailored to your specific needs, exceeding your expectations every step of the way">
+  <Hero video={heroVideos.space} short>
+    <h1 class="h-lg">Perfecting custom software development, one step at a time</h1>
+    <p class="lead">Services tailored to your specific needs, exceeding your expectations every step of the way</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/contact">Reach Out!</a>
+      <a class="btn btn-ghost" href="/case-studies">Case Studies <Icon name="chevrons" size={20} /></a>
+    </div>
+  </Hero>
+  <Marquee />
+
+  <section class="section container">
+    <h2 class="h-lg center">Our Services</h2>
+    <div class="grid grid-3 services">
+      {allServices.map((s) => {
+        const Tag = s.href ? 'a' : 'div';
+        return (
+          <Tag class:list={['card', 'service', { link: s.href }]} href={s.href}>
+            <h3 class="h-sm">{s.title} {s.href && <Icon name="external" size={18} />}</h3>
+            <p>{s.text}</p>
+          </Tag>
+        );
+      })}
+    </div>
+  </section>
+
+  <section class="section container" id="models">
+    <h2 class="h-lg center">Models Of Engagement</h2>
+    <div class="models">
+      {modelDetails.map((m) => (
+        <article class="model">
+          <div class="model-title"><h3 class="h-lg">{m.title}</h3></div>
+          <div>
+            <p>{m.text}</p>
+            <h4 class="h-sm benefits-title">Benefits of this model</h4>
+            <ul>
+              {m.benefits.map((b) => <li><Icon name="check" size={20} /> {b}</li>)}
+            </ul>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <Cta title="You have an idea?" text="Let's make that idea a reality!" button="Contact Us" image={ctaBackgrounds.orbit} />
+</Base>
+
+<style>
+  .services { margin-top: 48px; }
+  .service { display: flex; flex-direction: column; gap: 14px; min-height: 230px; }
+  .service h3 { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .service p { font-size: .92rem; color: var(--text-muted); }
+  .service.link { transition: transform .2s, box-shadow .2s; }
+  .service.link:hover { transform: translateY(-3px); box-shadow: 0 0 28px rgba(3,169,244,.7); }
+  .service.link h3 :global(svg) { color: var(--accent); }
+
+  .models { display: flex; flex-direction: column; gap: 32px; margin-top: 48px; }
+  .model { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: center; padding: clamp(28px, 4vw, 48px); border-radius: var(--radius-lg); background: linear-gradient(135deg, #022338, #22083f); border: 2px solid var(--line); }
+  .model-title h3 { color: var(--accent); }
+  .benefits-title { margin: 28px 0 14px; }
+  ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+  li { display: flex; align-items: center; gap: 12px; font-weight: 500; }
+  li :global(svg) { color: var(--accent); flex: none; }
+  @media (max-width: 760px) { .model { grid-template-columns: 1fr; gap: 16px; } }
+</style>

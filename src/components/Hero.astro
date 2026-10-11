@@ -1,0 +1,29 @@
+---
+interface Props {
+  video?: { src: string; poster: string };
+  image?: string;
+  short?: boolean;
+}
+const { video, image, short = false } = Astro.props;
+---
+<section class:list={['hero', { short }]}>
+  <div class="hero-media">
+    {video ? (
+      <video autoplay muted loop playsinline preload="metadata" poster={video.poster} data-hero-video>
+        <source src={video.src} type="video/mp4" />
+      </video>
+    ) : image ? (
+      <img src={image} alt="" fetchpriority="high" />
+    ) : null}
+  </div>
+  <div class="container hero-content">
+    <slot />
+  </div>
+</section>
+
+<script>
+  // Respect reduced-motion: keep the poster frame instead of playing the background video.
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll<HTMLVideoElement>('[data-hero-video]').forEach((v) => { v.removeAttribute('autoplay'); v.pause(); });
+  }
+</script>

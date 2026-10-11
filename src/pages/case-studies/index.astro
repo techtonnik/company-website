@@ -1,0 +1,29 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import Marquee from '../../components/Marquee.astro';
+import Showcase from '../../components/Showcase.astro';
+import Cta from '../../components/Cta.astro';
+import Icon from '../../components/Icon.astro';
+import { heroVideos, ctaBackgrounds } from '../../data/site';
+import { caseStudies } from '../../data/showcase';
+---
+<Base title="Case Studies | techtonnik" description="No entry on this list is more important than the others - every single client of ours is our top priority!">
+  <Hero video={heroVideos.space} short>
+    <h1 class="h-lg">Creating Success Stories Around Us</h1>
+    <p class="lead">No entry on this list is more important than the others - every single client of ours is our top priority!</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/contact">Become a Success Story</a>
+      <a class="btn btn-ghost" href="/services">Services <Icon name="chevrons" size={20} /></a>
+    </div>
+  </Hero>
+  <Marquee />
+  <div class="container list">
+    {caseStudies.map((item) => <Showcase item={item} />)}
+  </div>
+  <Cta title="Kickstart your project!" image={ctaBackgrounds.earth} />
+</Base>
+
+<style>
+  .list { display: flex; flex-direction: column; gap: 44px; padding-block: 56px; }
+</style>
