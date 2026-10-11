@@ -48,7 +48,9 @@ strong.hl { font-weight: 600; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
 .container { width: 100%; max-width: calc(var(--max) + 2 * var(--gutter)); margin-inline: auto; padding-inline: var(--gutter); }
-.section { padding-block: clamp(56px, 8vw, 110px); }
+.section { padding-block: clamp(40px, 5vw, 64px); }
+/* Back-to-back sections share one gap instead of doubling their padding. */
+.section + .section { padding-top: 0; }
 .section-tight { padding-block: clamp(40px, 5vw, 64px); }
 
 .h-xl { font-size: clamp(2.4rem, 5.2vw, 4.2rem); font-weight: 700; }
@@ -59,7 +61,7 @@ strong.hl { font-weight: 600; }
 .muted { color: var(--text-muted); }
 .center { text-align: center; }
 
-.section-head { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-bottom: clamp(28px, 4vw, 48px); }
+.section-head { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-bottom: clamp(20px, 2.5vw, 32px); }
 .section-head p { margin-top: 12px; max-width: 32rem; }
 
 /* Buttons */

@@ -5,15 +5,8 @@ import Marquee from '../../components/Marquee.astro';
 import Cta from '../../components/Cta.astro';
 import Icon from '../../components/Icon.astro';
 import { heroVideos, ctaBackgrounds } from '../../data/site';
-import { allServices, modelDetails, stack } from '../../data/services';
+import { allServices, modelDetails } from '../../data/services';
 
-const stackGroups = [
-  { group: 'Front End', items: stack.frontend },
-  { group: 'Back End', items: stack.backend },
-  { group: 'Database', items: stack.database },
-  { group: 'Cloud', items: stack.cloud },
-  { group: 'Desktop', items: stack.desktop },
-];
 ---
 <Base title="Services | Techtonnik" description="Senior software development: web, mobile and desktop apps, AI integrations and technical consulting.">
   <Hero video={heroVideos.space} short>
@@ -69,33 +62,12 @@ const stackGroups = [
     </div>
   </section>
 
-  <section class="section container">
-    <div class="section-head">
-      <div>
-        <h2 class="h-lg">My <span class="hl">tech stack</span></h2>
-        <p>Modern, well-supported tools. Need something else? My network likely covers it.</p>
-      </div>
-    </div>
-    <div class="stack">
-      {stackGroups.map((g) => (
-        <div class="stack-group">
-          <h3 class="h-sm">{g.group}</h3>
-          <ul>
-            {g.items.map((t) => <li><img src={t.img} alt="" width="56" height="56" loading="lazy" /><span>{t.name}</span></li>)}
-          </ul>
-        </div>
-      ))}
-    </div>
-  </section>
-
   <Cta title="Have a project in mind?" text="Tell me about it, and I'll make sure it ends up with the right team." button="Get in Touch" image={ctaBackgrounds.orbit} />
 </Base>
 
 <style>
   :global(main .hero.short) { min-height: 440px; }
   :global(main .hero-content) { padding-top: 96px; padding-bottom: 40px; }
-  :global(main .section) { padding-block: clamp(36px, 4.5vw, 64px); }
-  :global(main .section-head) { margin-bottom: clamp(20px, 2.5vw, 32px); }
 
   .service { display: flex; flex-direction: column; gap: 12px; }
   .service :global(.s-icon) { color: var(--accent); }
@@ -112,12 +84,4 @@ const stackGroups = [
   li :global(svg) { color: var(--accent); flex: none; }
   @media (max-width: 760px) { .model { grid-template-columns: 1fr; gap: 12px; } }
 
-  .stack { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; }
-  .stack-group { padding: 22px; border: 2px solid var(--line); border-radius: var(--radius-lg); background: var(--bg-raised); }
-  .stack-group h3 { margin-bottom: 16px; font-size: 1rem; }
-  .stack-group ul { margin: 0; gap: 12px; }
-  .stack-group li { font-size: .9rem; }
-  .stack-group img { width: 32px; height: 32px; object-fit: contain; }
-  @media (max-width: 1000px) { .stack { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-  @media (max-width: 600px) { .stack { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 </style>
