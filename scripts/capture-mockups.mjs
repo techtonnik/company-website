@@ -1,5 +1,5 @@
 // Captures fresh desktop + mobile screenshots of featured projects for the device mockups.
-// (synergyx-desktop.jpg has no live site: it's a static crop of the old Synergy X marketing mockup.)
+// (synergyx-*.jpg are manual screenshots of an internal tool and are not captured here.)
 // Usage: npm run mockups            (all)
 //        npm run mockups -- ontopo  (one)
 import { chromium, devices } from 'playwright';
