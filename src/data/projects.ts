@@ -69,7 +69,6 @@ export const moreProjects: Project[] = [
   { name: 'Elementals', summary: 'A full NFT collection platform, including the smart contract.', logo: media('cce622_c20fe23cc825497d8b88bee6d7ff9f37'), href: 'https://elementals-nft.com/' },
   { name: 'gderaditi.com', summary: 'Our in-house job board for the hospitality industry.', logo: media('249b31_0b88f10aff9243bb9061d5da90fb300c'), href: 'https://thezenithdigital.wixstudio.io/gderaditi' },
   { name: 'eFarma', summary: 'Brand, copy and web shop consultancy for a homemade food marketplace.', logo: media('cce622_248b2df272c045eabe035e8b1aaf1b33'), href: 'https://efarma.co.rs/' },
-  { name: 'AK Kompresor', summary: 'A motorcycle-focused website for a Serbian vehicle marketplace.', logo: media('cce622_7e969dcc5b7642268c641dfb6d1f67d3'), href: 'https://motori.akkompresor.rs/' },
   { name: 'Saint Matthew Place', summary: 'A website for luxury seaside apartments in Montenegro, with Zenith Digital.', logo: media('249b31_fc6ec483e83b4cdf995bedffaefc5549'), href: 'https://www.saintmatthewplace.com/' },
   { name: 'Michael Forte', summary: 'A website showcasing luxury and performance vehicles, with Zenith Digital.', logo: media('249b31_87b68a3a5d474eaca4f804902aafb87b'), href: 'https://www.michaeldmforte.com/' },
   { name: 'Hamster Casino', summary: 'A landing page for a TON casino, designed and built in 36 hours.', logo: media('249b31_83a86115de9240928b0bdd6437982042'), href: 'https://www.hamstercasino.xyz/' },

@@ -1,7 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
-import Marquee from '../components/Marquee.astro';
 import Icon from '../components/Icon.astro';
 import Cta from '../components/Cta.astro';
 import DeviceMockup from '../components/DeviceMockup.astro';
@@ -20,7 +19,6 @@ const ext = (href: string) => (isExternal(href) ? { target: '_blank', rel: 'noop
       <a class="btn btn-ghost" href="/case-studies">Case Studies <Icon name="chevrons" size={20} /></a>
     </div>
   </Hero>
-  <Marquee />
 
   <section class="section container list">
     {partners.map((p, i) => (

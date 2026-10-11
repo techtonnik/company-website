@@ -38,23 +38,18 @@ export const ctaBackgrounds = {
   orbit: media('11062b_16f8b794cfbc43dc87494b31ab54f26f'),
 };
 
+// Logo strip on the home and services pages: highlighted projects and a few partners only.
 export const marqueeLogos = [
-  { src: media('cce622_d8d970eba3ae41909ab54fb4ec111640'), alt: 'helixconnect' },
-  { src: media('cce622_8155ce1bc57c46acaf2e87322f275800'), alt: 'Synergy X' },
+  { src: media('249b31_0cf371cfc56d465f80ca28688b426933'), alt: 'Ontopo' },
   { src: media('cce622_5f2a594203974d259e6cffcd05de2aa4'), alt: 'CodeIT' },
-  { src: media('cce622_dd2e9f3eed2b4b029cd8bcd5ebcc8b62'), alt: 'BCA Scheduler' },
-  { src: media('cce622_86c7036507c946aa8a1059eb8ba324a5'), alt: 'NotYou Brand' },
-  { src: media('cce622_dc33e6cee92149b7bb5704c02b4b515c'), alt: '$CHEF' },
-  { src: media('cce622_7e969dcc5b7642268c641dfb6d1f67d3'), alt: 'AK Kompresor' },
-  { src: media('cce622_fa544ea2723645fdbefc45a7de4290de'), alt: 'Investiva' },
+  { src: '/media/partner-zirtue.png', alt: 'Zirtue' },
+  { src: '/media/partner-cinnamon.svg', alt: 'Cinnamon' },
+  { src: media('249b31_24b5a16a63bb41a28b0d7b98dad0c572'), alt: 'Tennilytics' },
+  { src: media('249b31_a9f5538c581c4e58945238c3409c8d85'), alt: 'Genroks' },
   { src: media('cce622_7c3107b808914f2ca4ed77641cbbb08b'), alt: 'SerbLink' },
-  { src: media('cce622_ee251d33ba6f41d8bf796b7c2d59a5c0'), alt: 'CryptoBalance Pal' },
-  { src: media('cce622_d8d3d49acf2948929c2db9dfd3bb728e'), alt: 'Zenith Digital' },
+  { src: media('249b31_c1ea1c3a455e43ce8e1b55d7dd8bbbf9'), alt: 'TrinitySmartIT' },
   { src: media('cce622_a76096ad3aec4ecfa9376d4f36d3e456'), alt: 'Super Stan' },
-  { src: media('cce622_248b2df272c045eabe035e8b1aaf1b33'), alt: 'eFarma' },
-  { src: media('cce622_cfefe3c60df34395a862aa59bb32b7fb'), alt: 'Narcist' },
-  { src: media('249b31_8568ff1b8ab24a82aa2f3b6c44a5f164'), alt: 'kopirajter.rs' },
-  { src: media('249b31_0b88f10aff9243bb9061d5da90fb300c'), alt: 'gderaditi.com' },
+  { src: media('cce622_8155ce1bc57c46acaf2e87322f275800'), alt: 'Synergy X' },
 ];
 
 export const trustLogos = [

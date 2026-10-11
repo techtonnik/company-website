@@ -28,6 +28,9 @@ const logomark = '/media/cce622_db2c1869cd9141de94a9d96061c9aa34~mv2.webp';
   .marquee:hover .track { animation-play-state: paused; }
   .group { display: flex; align-items: center; gap: 56px; padding-right: 56px; }
   .group img { height: 44px; width: auto; max-width: 240px; object-fit: contain; }
+  /* Bold wordmarks read larger than the rest; scale them down to match. */
+  .group img[alt='Cinnamon'] { height: 26px; }
+  .group img[alt='Genroks'] { height: 34px; }
   .wordmark { padding-block: 24px; }
   .wordmark .track { animation-duration: 30s; }
   .word { display: inline-flex; align-items: center; gap: 22px; font: 700 clamp(2rem, 3.6vw, 3rem)/1 var(--font-head); color: rgba(241, 240, 234, .85); white-space: nowrap; }
