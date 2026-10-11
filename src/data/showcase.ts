@@ -126,45 +126,6 @@ export const caseStudies: ShowcaseItem[] = [
   },
 ];
 
-export const products: ShowcaseItem[] = [
-  {
-    title: 'Synergy X', tagline: 'Tailor-Made Marketing Solution',
-    text: 'Each marketing agency has their own workflow - and Synergy X is here to automate that flow in a fully customizable way.',
-    bg: media('249b31_354143a285c242fd87d18c7a90fd4c79'), logo: media('cce622_eb2099f37a7e4995a3ce0af674376641'), shot: media('249b31_d1ff9b9b5f024e7899211949572d89ab'),
-    links: [{ label: 'Schedule a Demo', href: '/contact' }],
-  },
-  {
-    title: 'RESS Crawler', tagline: 'Perfect solution for real estate agencies!',
-    text: 'An automated real estate data scraper that collects up-to-date property listings, prices, and key details from multiple sources to keep your website accurate, competitive, and insightful for users.',
-    bg: media('249b31_cdd73b618e744e8ea34ee4e297b92f42'),
-    links: [{ label: 'Schedule a Demo', href: '/contact' }],
-  },
-  {
-    title: 'CryptoBalance Pal', tagline: 'The Spatial Computing Revolution!',
-    text: 'A cutting-edge app created specifically for visionOS and the Apple Vision Pro, available now exclusively in the App Store.',
-    bg: nsplsh('c6f6d3a084cf4018a1c4f6445dec1fb1'), logo: media('cce622_ee251d33ba6f41d8bf796b7c2d59a5c0'), shot: media('249b31_59efac78c74b4d64aaff0da2cea3781a'),
-    links: [{ label: 'Visit App Store', href: 'https://apps.apple.com/us/app/cryptobalance-pal/id6478851606' }],
-  },
-  {
-    title: 'BCA Scheduler', tagline: 'Your Ultimate Scheduling Solution!',
-    text: 'Empower your business with the BCA Scheduler, a cutting-edge desktop application designed to revolutionize the way you organize and manage your complex schedules. Tailored for versatility, this intuitive app is your go-to tool for creating intricate schedules that align seamlessly with your unique business needs.',
-    bg: media('249b31_78c73428e8ba41ba8fa196d5f528b1e4'), logo: media('cce622_dd2e9f3eed2b4b029cd8bcd5ebcc8b62'),
-    links: [{ label: 'Schedule a Demo', href: '/contact' }],
-  },
-  {
-    title: 'Agroinvest', tagline: 'Agriculture + Data!',
-    text: 'A project that aims to use open data for analyzing and predicting trends in the agricultural sector, to allow users to make better investment decisions. It is intended for anyone who would like to get involved in agriculture and invest in it, as well as for those who already have a part of their portfolio in agriculture and would like to take it to the next level.',
-    bg: nsplsh('e4976fbe9f394946ac09bf6241b84216'), logo: media('249b31_4024e742865a44158936a383472bea39'), shot: media('249b31_3e12b4fca73141ebb1e2dd4cc805a551'),
-    links: [{ label: 'Schedule a Demo', href: '/contact' }],
-  },
-  {
-    title: 'Project Shido', tagline: 'Enter the IT Industry with Ease!',
-    text: "Being new in an industry is never easy. We help young up-and-coming developers by allowing them to work on real projects and learn from the experts. Reach out to us directly, and we'll find a way to collaborate with mutual benefits!",
-    bg: media('cce622_fc3d9ab1c7c14be9a321cb961f8126c4'), logo: media('249b31_e8db752c69e74b448a5260c089af98ed'),
-    links: [{ label: 'Schedule a Meeting!', href: '/contact' }],
-  },
-];
-
 export type Partner = {
   logo: string;
   logoAlt: string;
