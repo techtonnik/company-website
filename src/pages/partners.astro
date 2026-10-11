@@ -25,19 +25,15 @@ const ext = (href: string) => (isExternal(href) ? { target: '_blank', rel: 'noop
     {partners.map((p, i) => (
       <article class:list={['partner', { flip: i % 2 === 1 }]}>
         <div class="col media-col">
-          {p.mockup ? (
-            <a class="panel shot mockup-shot" href={p.mockup.url} target="_blank" rel="noopener">
-              <DeviceMockup
-                desktop={`/mockups/${p.mockup.name}-desktop.jpg`}
-                mobile={`/mockups/${p.mockup.name}-mobile.jpg`}
-                url={p.mockup.url}
-                tint={p.mockup.tint}
-                alt={`${p.logoAlt} website`}
-              />
-            </a>
-          ) : (
-            <div class="panel shot"><img src={p.shot} alt={`${p.logoAlt} website preview`} loading="lazy" /></div>
-          )}
+          <a class="panel shot" href={p.mockup.url} target="_blank" rel="noopener">
+            <DeviceMockup
+              desktop={`/mockups/${p.mockup.name}-desktop.jpg`}
+              mobile={`/mockups/${p.mockup.name}-mobile.jpg`}
+              url={p.mockup.url}
+              tint={p.mockup.tint}
+              alt={`${p.logoAlt} website`}
+            />
+          </a>
           <figure class:list={['quote', { placeholder: p.placeholder }]}>
             {p.avatar
               ? <img src={p.avatar} alt="" width="154" height="157" loading="lazy" />
@@ -73,23 +69,24 @@ const ext = (href: string) => (isExternal(href) ? { target: '_blank', rel: 'noop
 </Base>
 
 <style>
-  .list { display: flex; flex-direction: column; gap: 48px; padding-block: 56px; }
+  :global(main .hero.short) { min-height: 440px; }
+  :global(main .hero-content) { padding-top: 96px; padding-bottom: 40px; }
+  .list { display: flex; flex-direction: column; gap: 32px; padding-block: 40px; }
   .partner { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   .col { display: flex; flex-direction: column; gap: 14px; }
   .flip .media-col { order: 2; }
   .panel { border: 2px solid var(--accent); border-radius: var(--radius); background: var(--accent); box-shadow: var(--glow-blue); overflow: hidden; }
-  .shot { aspect-ratio: 635 / 443; background: #0a5cf5; }
-  .shot img { width: 100%; height: 100%; object-fit: cover; }
+  .shot { display: block; transition: transform .2s; }
+  .shot:hover { transform: translateY(-2px); }
   .logo { display: grid; place-items: center; min-height: 107px; padding: 14px 28px; }
   .logo img { max-height: 80px; width: auto; object-fit: contain; }
   .logo img[alt='Cinnamon'] { max-height: 52px; }
-  .info { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 40px clamp(20px, 4vw, 48px); }
+  .info { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 28px clamp(20px, 3vw, 40px); }
   .info p { margin-top: 18px; font-size: .92rem; }
   .info .btn-row { justify-content: center; }
   .quote { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 16px; align-items: center; margin: 0; }
   .quote img { width: 96px; height: 98px; object-fit: cover; border: 2px solid var(--accent); border-radius: 6px; }
   .quote blockquote { margin: 0; font-size: .95rem; }
-  .mockup-shot { aspect-ratio: auto; background: none; }
   .avatar-fallback { display: grid; place-items: center; width: 96px; height: 98px; border: 2px dashed var(--accent); border-radius: 6px; font: 700 2.4rem var(--font-head); color: var(--accent); }
   /* Visible on purpose so missing testimonials don't ship unnoticed. */
   .quote.placeholder { padding: 12px; border: 1px dashed var(--purple); border-radius: var(--radius); }
@@ -103,6 +100,6 @@ const ext = (href: string) => (isExternal(href) ? { target: '_blank', rel: 'noop
   .cta-strip { position: relative; isolation: isolate; overflow: hidden; }
   .cta-strip img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
   .cta-strip::before { content: ''; position: absolute; inset: 0; z-index: -1; background: rgba(3, 169, 244, .55); }
-  .cta-strip .inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding-block: 64px; }
+  .cta-strip .inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding-block: 48px; }
   .cta-strip .btn { min-width: 240px; }
 </style>

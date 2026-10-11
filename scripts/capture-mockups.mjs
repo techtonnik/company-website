@@ -12,6 +12,13 @@ const sites = {
   superstan: 'https://www.superstanbg.rs/',
   cinnamon: 'https://www.cinnamon.agency/',
   cognitika: 'https://cognitika.com/',
+  codeit: 'https://www.codeit.rs/',
+  zenith: 'https://www.thezenithdigital.com/',
+  genroks: 'https://genroks.com/',
+  kopirajter: 'https://kopirajter.rs/',
+  trinity: 'https://www.trinitysmartit.com/',
+  helixconnect: 'https://helix-connect.com/',
+  tremium: 'https://tremium.net/',
 };
 
 const only = process.argv.slice(2);
@@ -20,7 +27,8 @@ const targets = Object.entries(sites).filter(([key]) => !only.length || only.inc
 // Best-effort dismissal of cookie/consent banners so they don't end up in the shot.
 async function dismissBanners(page) {
   const labels = /^(accept( all)?|allow( all)?|agree|i agree|got it|ok|prihvati( sve)?|slažem se)$/i;
-  for (const el of await page.getByRole('button').all()) {
+  const candidates = [...(await page.getByRole('button').all()), ...(await page.getByRole('link').all())];
+  for (const el of candidates) {
     const text = (await el.innerText().catch(() => '')).trim();
     if (labels.test(text)) await el.click({ timeout: 1000 }).catch(() => {});
   }
@@ -38,6 +46,9 @@ async function shoot(browser, key, url, kind) {
   // Let autoplaying videos get past their first (often black) frames.
   await page.evaluate(() => document.querySelectorAll('video').forEach((v) => { v.muted = true; v.play().catch(() => {}); })).catch(() => {});
   await page.waitForTimeout(4000);
+  // Some banners appear late, so try twice.
+  await dismissBanners(page);
+  await page.waitForTimeout(1500);
   await dismissBanners(page);
   await page.waitForTimeout(1000);
   const path = `public/mockups/${key}-${kind}.jpg`;
