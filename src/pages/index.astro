@@ -47,7 +47,7 @@ type Featured = {
   tint: string;
   via?: { name: string; href: string };
   /** Client the project was built for, when it isn't the product owner itself. */
-  client?: string;
+  client?: { name: string; href: string };
   /** Set false when there's no mobile screenshot. */
   mobile?: boolean;
 };
@@ -57,7 +57,7 @@ const featured: Featured[] = [
   { title: 'Tennilytics', tagline: 'Experience Tennis Like The Pros', scope: 'Web app · Mobile app · Website', site: 'https://www.tennilytics.com/', mockup: 'tennilytics', tint: '#2a3a12' },
   { title: 'SerbLink', tagline: 'Connecting Serbian Professionals!', scope: 'Full-stack platform', site: 'https://serblink.org/', mockup: 'serblink', tint: '#0a2f8f' },
   { title: 'Super Stan', tagline: 'Find Your Dream Home!', scope: 'Web app · UI/UX', site: 'https://www.superstanbg.rs/', href: '/case-studies/super-stan', mockup: 'superstan', tint: '#6e1414' },
-  { title: 'Synergy X', tagline: 'Tailor-Made Marketing Solution', scope: 'Web app · Marketing automation', href: '/products', mockup: 'synergyx', tint: '#27347f', client: 'AI Digital', mobile: false },
+  { title: 'Synergy X', tagline: 'Tailor-Made Marketing Solution', scope: 'Web app · Marketing automation', href: '/products', mockup: 'synergyx', tint: '#27347f', client: { name: 'AI Digital', href: 'https://www.aidigital.com/' }, mobile: false },
 ];
 const linkAttrs = (href: string) => (isExternal(href) ? { target: '_blank', rel: 'noopener' } : {});
 const cardHref = (app: Featured) => app.href ?? app.site ?? '/case-studies';
@@ -144,7 +144,9 @@ const steps = [
               {app.via && (
                 <span class="via">via <a href={app.via.href} target="_blank" rel="noopener">{app.via.name}</a></span>
               )}
-              {app.client && <span class="via">for <strong>{app.client}</strong></span>}
+              {app.client && (
+                <span class="via">for <a href={app.client.href} target="_blank" rel="noopener">{app.client.name}</a></span>
+              )}
             </h3>
             <p>{app.tagline}</p>
           </div>
@@ -240,7 +242,6 @@ const steps = [
   .app-body h3 > a:hover { color: var(--accent); }
   .via { font: 500 .85rem var(--font-body); color: var(--text-muted); }
   .via a { color: var(--accent); font-weight: 600; }
-  .via strong { color: var(--text); font-weight: 600; }
   .via a:hover { text-decoration: underline; }
   .app-body p:last-child { font-size: .9rem; color: var(--text-muted); }
   .scope { font-size: .75rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--accent); }
