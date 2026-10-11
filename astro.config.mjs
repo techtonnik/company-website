@@ -5,7 +5,4 @@ export default defineConfig({
   site: 'https://www.techtonnik.com',
   trailingSlash: 'ignore',
   integrations: [sitemap()],
-  markdown: {
-    shikiConfig: { theme: 'github-dark' },
-  },
 });

@@ -16,11 +16,9 @@ export const nav = [
   { label: 'Partners', href: '/partners' },
   { label: 'Products', href: '/products' },
   { label: 'Services', href: '/services' },
-  { label: 'Blog', href: '/blog' },
 ];
 
 export const footerNav = [
-  { label: 'Blog', href: '/blog' },
   { label: 'Contact Us', href: '/contact' },
   { label: 'Partners', href: '/partners' },
   { label: 'Case Studies', href: '/case-studies' },

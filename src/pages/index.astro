@@ -1,5 +1,4 @@
 ---
-import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import Marquee from '../components/Marquee.astro';
@@ -8,12 +7,10 @@ import EngagementModels from '../components/EngagementModels.astro';
 import Testimonials from '../components/Testimonials.astro';
 import Faq from '../components/Faq.astro';
 import Cta from '../components/Cta.astro';
-import PostCard from '../components/PostCard.astro';
 import { site, heroVideos, portfolio, testimonials, homeFaq, ctaBackgrounds, media } from '../data/site';
 import { homeOffers, homeMore } from '../data/services';
 import { isExternal } from '../lib/rich';
 
-const posts = (await getCollection('blog')).sort((a, b) => +b.data.pubDate - +a.data.pubDate).slice(0, 3);
 const featured = testimonials.find((t) => t.name === 'Nikola Terzić')!;
 const [webDev, ...otherOffers] = homeOffers;
 ---
@@ -132,17 +129,6 @@ const [webDev, ...otherOffers] = homeOffers;
   </section>
 
   <Faq items={homeFaq} />
-
-  <!-- Blog -->
-  <section class="section container">
-    <div class="section-head">
-      <h2 class="h-lg">Insights, <span class="hl">stories,</span> updates!</h2>
-      <a class="btn btn-primary" href="/blog">All Blogs</a>
-    </div>
-    <div class="grid grid-3">
-      {posts.map((post) => <PostCard post={post} />)}
-    </div>
-  </section>
 
   <Cta title="Kickstart your project!" image={ctaBackgrounds.satellite} />
 </Base>

@@ -143,7 +143,7 @@ export const products: ShowcaseItem[] = [
     title: 'CryptoBalance Pal', tagline: 'The Spatial Computing Revolution!',
     text: 'A cutting-edge app created specifically for visionOS and the Apple Vision Pro, available now exclusively in the App Store.',
     bg: nsplsh('c6f6d3a084cf4018a1c4f6445dec1fb1'), logo: media('cce622_ee251d33ba6f41d8bf796b7c2d59a5c0'), shot: media('249b31_59efac78c74b4d64aaff0da2cea3781a'),
-    links: [{ label: 'Visit App Store', href: 'https://apps.apple.com/us/app/cryptobalance-pal/id6478851606' }, { label: 'Read More', href: '/post/cryptobalance-pal-a-visionos-journey' }],
+    links: [{ label: 'Visit App Store', href: 'https://apps.apple.com/us/app/cryptobalance-pal/id6478851606' }],
   },
   {
     title: 'BCA Scheduler', tagline: 'Your Ultimate Scheduling Solution!',

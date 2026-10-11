@@ -3,9 +3,7 @@ import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import { heroVideos, trustLogos, ctaBackgrounds, site } from '../data/site';
 
-// Set PUBLIC_FORM_ENDPOINT (e.g. a Formspree or Web3Forms URL) to deliver submissions.
-// Without it, the form falls back to opening the visitor's email client.
-const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT ?? '';
+// Submitting opens the visitor's email client with a pre-filled message.
 const reasons = ['Project Request', 'General Questions', 'Partnership Opportunity', 'Other'];
 ---
 <Base title="Contact Us | techtonnik" description="Drop us a message, and let's create something amazing together!">
@@ -15,7 +13,7 @@ const reasons = ['Project Request', 'General Questions', 'Partnership Opportunit
   </Hero>
 
   <section class="section container contact">
-    <form class="form" data-form data-endpoint={endpoint} data-email={site.email} novalidate>
+    <form class="form" data-form data-email={site.email} novalidate>
       <h2 class="h-md">Let's Talk!</h2>
       <div class="fields">
         <label>
@@ -42,7 +40,6 @@ const reasons = ['Project Request', 'General Questions', 'Partnership Opportunit
           <textarea name="message" rows="5"></textarea>
         </label>
       </div>
-      <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
       <button class="btn btn-primary submit" type="submit">Submit</button>
       <p class="status" role="status" data-status></p>
       <p class="consent">By submitting this form, you agree to our <a href="/privacy-policy">Privacy Policy.</a></p>
@@ -77,10 +74,8 @@ const reasons = ['Project Request', 'General Questions', 'Partnership Opportunit
   textarea { resize: vertical; background: #3a3f48; color: var(--text); }
   input:focus, select:focus, textarea:focus { outline: none; box-shadow: var(--glow-blue); }
   input[aria-invalid='true'], select[aria-invalid='true'] { border-color: #ff4d4f; }
-  .hp { position: absolute; left: -9999px; }
   .submit { width: 100%; margin-top: 26px; }
   .status { min-height: 1.5em; margin-top: 12px; font-weight: 500; }
-  .status.ok { color: #4ade80; }
   .status.err { color: #ff6b6b; }
   .consent { font-size: .92rem; }
   .consent a { color: var(--accent); text-decoration: underline; }
@@ -101,12 +96,8 @@ const reasons = ['Project Request', 'General Questions', 'Partnership Opportunit
 <script>
   const form = document.querySelector<HTMLFormElement>('[data-form]')!;
   const status = form.querySelector<HTMLElement>('[data-status]')!;
-  const setStatus = (msg: string, kind: 'ok' | 'err' | '' = '') => {
-    status.textContent = msg;
-    status.className = `status ${kind}`;
-  };
 
-  form.addEventListener('submit', async (e) => {
+  form.addEventListener('submit', (e) => {
     e.preventDefault();
     const required = [...form.querySelectorAll<HTMLInputElement | HTMLSelectElement>('[required]')];
     let valid = true;
@@ -115,30 +106,12 @@ const reasons = ['Project Request', 'General Questions', 'Partnership Opportunit
       el.setAttribute('aria-invalid', String(!ok));
       valid &&= ok;
     }
-    if (!valid) return setStatus('Please fill in all required fields with valid values.', 'err');
+    status.textContent = valid ? '' : 'Please fill in all required fields with valid values.';
+    status.className = valid ? 'status' : 'status err';
+    if (!valid) return;
 
     const data = new FormData(form);
-    if (data.get('_gotcha')) return; // bot
-    const endpoint = form.dataset.endpoint;
-
-    if (!endpoint) {
-      const body = `Name: ${data.get('name')}\nEmail: ${data.get('email')}\nPhone: ${data.get('phone') || '-'}\n\n${data.get('message') || ''}`;
-      window.location.href = `mailto:${form.dataset.email}?subject=${encodeURIComponent(String(data.get('reason')))}&body=${encodeURIComponent(body)}`;
-      return;
-    }
-
-    const button = form.querySelector<HTMLButtonElement>('button[type=submit]')!;
-    button.disabled = true;
-    setStatus('Sending…');
-    try {
-      const res = await fetch(endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
-      if (!res.ok) throw new Error(String(res.status));
-      form.reset();
-      setStatus("Thanks for submitting! We'll get back to you soon.", 'ok');
-    } catch {
-      setStatus(`Something went wrong. Please email us at ${form.dataset.email}.`, 'err');
-    } finally {
-      button.disabled = false;
-    }
+    const body = `Name: ${data.get('name')}\nEmail: ${data.get('email')}\nPhone: ${data.get('phone') || '-'}\n\n${data.get('message') || ''}`;
+    window.location.href = `mailto:${form.dataset.email}?subject=${encodeURIComponent(String(data.get('reason')))}&body=${encodeURIComponent(body)}`;
   });
 </script>
