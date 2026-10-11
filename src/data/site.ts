@@ -64,17 +64,6 @@ export const trustLogos = [
   { src: media('cce622_7c3107b808914f2ca4ed77641cbbb08b'), alt: 'SerbLink' },
 ];
 
-export const portfolio = [
-  { title: 'Synergy X', tags: 'Desktop App Development, UI-UX Design', href: '/case-studies', img: media('249b31_bb12e09855f243fa907213dd857a74b7') },
-  { title: 'Zenith Digital', tags: 'Partnership, No-Code Development, E-Commerce', href: 'https://thezenithdigital.com/', img: media('249b31_5a2a0a0664a44923a4d318a38d0a2f27') },
-  { title: 'CryptoBalance Pal', tags: 'visionOS Application', href: 'https://apps.apple.com/us/app/cryptobalance-pal/id6478851606', img: media('249b31_9625bf8fb39b43e8a061292ee06ac366') },
-  { title: 'SuperStan', tags: 'Web App Development, UI-UX Design, Digital Marketing', href: 'https://superstanbg.rs/', img: media('249b31_a21dc2de68544417afecd8be35600f32') },
-  { title: 'Investiva', tags: 'Web App Development', href: 'https://investiva-frontend-stqn2.ondigitalocean.app/', img: media('249b31_319001355f29497e94dee43d20faa149') },
-  { title: 'Elementals', tags: 'Web App Development, Blockchain Integration', href: 'https://elementals-nft.com/', img: media('249b31_04b576a16578498daf2c45c64e968206') },
-  { title: 'eFarma', tags: 'Consultancy, Digital Marketing', href: 'https://efarma.co.rs/', img: media('249b31_9123a634167e496b976dc688c2909e97') },
-  { title: '$CHEF', tags: 'UI-UX Design, Website Development', href: 'https://thezenithdigital.wixstudio.io/chefcoin', img: media('249b31_bf70062a486448ee85665d8034cb97a2') },
-];
-
 export const testimonials = [
   { name: 'Adrian Solomon', role: 'Director @ helixconnect Europe SRL', img: media('249b31_96bc6c69e96f4feeb7611a07f7f5ee35'), quote: 'A great team of professionals that are eager to meet all expectations. Very flexible, reliable and creative. I am extremely pleased with their work and would trust them for future projects.' },
   { name: 'Nikola Terzić', role: 'Co-Founder @ SerbLink', img: media('cce622_adec34ab63304650b90d822dc7f156de'), quote: 'We approached Techtonnik with firm deadlines for our website. They are a fast pace and easy to work with team, with fluency in both Serbian and English. SerbLink will continue to leverage their expertise for our technical needs. I would highly recommend and gladly speak on their behalf!' },
@@ -86,25 +75,3 @@ export const testimonials = [
   { name: 'Luka Stojaković', role: 'Sales Manager @ Super Stan', img: media('249b31_a320e00430764a15a319627b762dc5b8'), quote: "The main part I'd like to highlight in our collaboration with Techtonnik was the communication - always available, always reliable. My highest recommendations for Stevan and his team!" },
 ];
 
-export const engagementModels = [
-  { icon: 'team', title: 'Dedicated Team', text: 'A full-time team of professionals who work exclusively on your projects, offering ongoing collaboration and scalability' },
-  { icon: 'calculator', title: 'Fixed Price', text: 'Covering your whole project for a predetermined amount, ensuring cost predictability and requiring well-defined requirements upfront' },
-  { icon: 'calendar', title: 'Time and Material', text: "You'll pay for the actual time and resources spent on your project, providing flexibility for changing requirements" },
-];
-
-export const homeFaq = [
-  { q: 'Where is Techtonnik based at?', a: ['Techtonnik is based in Serbia, with most of the members living in Belgrade, the country’s capital.'] },
-  { q: 'How big is the Techtonnik team?', a: ["The size of the Techtonnik team varies due to constant improvements to our talent pool. Our primary focus is to consistently have top-tier professionals on board. Our commitment to quality means we're always on the lookout for exceptional talent to join us."] },
-  {
-    q: 'Which model of engagement is ideal for my project?',
-    a: [
-      "It's perfectly okay if you're unsure. Our team is dedicated to helping you make the right decision. Here are the options:",
-      '**Fixed Price Model:** Ideal for smaller projects that can be well-defined in advance.',
-      '**Time & Material Model:** Best for longer projects with evolving requirements.',
-      '**Dedicated Team Model:** Suitable for ongoing projects where you need a full team working exclusively for you.',
-      "We'll guide you through the decision-making process to find the perfect fit for your project.",
-    ],
-  },
-  { q: 'How much will my project cost?', a: ["The cost of your project depends on its type, complexity, and deadline. While we have price ranges for different project types, each price is negotiated based on various factors. Reach out to us, and we'll provide a detailed estimate tailored to your project's specifics."] },
-  { q: 'How long will it take for my project to be completed?', a: ['The timeline for completing your project depends on its type, complexity, and requirements. We provide an estimated timeframe after thoroughly understanding your project\'s scope. Rest assured, we aim to deliver quality results within a reasonable period. If your project requires long-term maintenance - we got you covered!'] },
-];

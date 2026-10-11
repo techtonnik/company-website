@@ -1,21 +1,5 @@
 import { media } from './site';
 
-export const homeOffers = [
-  { title: 'Web Development', text: 'High-quality premium web applications made with passion', href: '/services/web-development', img: media('cce622_8644a5f8eaf1423f8e79c6c1e1d470d3') },
-  { title: 'Low-Code & No-Code', text: 'Stunning web presentations that elevate your business to the top.', href: '/services/low-code-no-code', img: media('cce622_8da603674f58454a9a6712b7860f35b0') },
-  { title: 'E-commerce', text: 'Quality-made online stores', href: '/services/e-commerce', img: media('cce622_ca2e5e73ff794599a4198ecadb3c4aae') },
-  { title: 'Mobile Development', text: 'Carefully crafted mobile experiences!', href: '/services', img: media('cce622_9b8480fe8b854781b580484626ceb21e') },
-];
-
-export const homeMore = [
-  { title: 'UI/UX & Branding', icon: 'pen' },
-  { title: 'AI Integrations', icon: 'sparkles' },
-  { title: 'Consultancy', icon: 'network' },
-  { title: 'Digital Marketing', icon: 'globe' },
-  { title: 'Graphic Design', icon: 'frame' },
-  { title: 'Desktop Applications', icon: 'laptop' },
-];
-
 export const allServices = [
   { title: 'Web Development', href: '/services/web-development', text: "Whether you're starting from scratch or revamping your app, we've got you covered. Our team builds web solutions that are fast, secure, fully scalable and look great on any device." },
   { title: 'Low-Code / No-Code', href: '/services/low-code-no-code', text: 'Want to create an amazing looking website? We can help you build anything you can imagine  with low-code and no-code platorfms like Wix and WebFlow.' },

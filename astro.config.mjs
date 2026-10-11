@@ -4,5 +4,5 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://www.techtonnik.com',
   trailingSlash: 'ignore',
-  integrations: [sitemap({ filter: (page) => !page.includes('/home-2') })],
+  integrations: [sitemap()],
 });
