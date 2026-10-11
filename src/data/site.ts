@@ -58,10 +58,10 @@ export const marqueeLogos = [
 ];
 
 export const trustLogos = [
+  { src: media('cce622_5f2a594203974d259e6cffcd05de2aa4'), alt: 'CodeIT' },
+  { src: '/media/partner-cinnamon.svg', alt: 'Cinnamon' },
+  { src: media('249b31_a9f5538c581c4e58945238c3409c8d85'), alt: 'Genroks' },
   { src: media('cce622_248b2df272c045eabe035e8b1aaf1b33'), alt: 'eFarma' },
-  { src: media('cce622_d8d970eba3ae41909ab54fb4ec111640'), alt: 'helixconnect' },
-  { src: media('cce622_fa544ea2723645fdbefc45a7de4290de'), alt: 'Investiva' },
-  { src: media('cce622_7c3107b808914f2ca4ed77641cbbb08b'), alt: 'SerbLink' },
 ];
 
 export const testimonials = [

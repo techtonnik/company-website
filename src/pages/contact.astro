@@ -9,18 +9,18 @@ const mailto = (subject?: string) => `mailto:${site.email}${subject ? `?subject=
 const shortcuts = [
   { icon: 'calendar', title: 'Join your team', text: 'Need a senior developer on an existing project, billed hourly?', subject: 'Joining our team' },
   { icon: 'laptop', title: 'Start a project', text: 'Have an idea or a product that needs building from scratch?', subject: 'New project' },
-  { icon: 'network', title: 'Become a partner', text: 'Run a company that could work with the Techtonnik network?', subject: 'Partnership opportunity' },
+  { icon: 'network', title: 'Become a partner', text: 'Run a company that could be a good fit for my network?', subject: 'Partnership opportunity' },
 ];
 ---
-<Base title="Contact Us | Techtonnik" description="Drop us a message, and let's create something amazing together!">
+<Base title="Contact | Techtonnik" description="Send me an email, and let's build something great together.">
   <Hero video={heroVideos.cubes} short>
-    <h1 class="h-lg">Hit Us Up!</h1>
-    <p class="lead">Drop us a message, and let's create something amazing together!</p>
+    <h1 class="h-lg">Let's Talk!</h1>
+    <p class="lead">Send me an email, and let's build something great together.</p>
   </Hero>
 
   <section class="section container">
     <div class="card email-card">
-      <p class="eyebrow">Email us directly</p>
+      <p class="eyebrow">Email me directly</p>
       <a class="address" href={mailto()}>{site.email}</a>
       <div class="btn-row">
         <a class="btn btn-primary" href={mailto()}><Icon name="mail" size={18} /> Write an Email</a>
@@ -28,7 +28,7 @@ const shortcuts = [
           <span data-copy-label>Copy address</span>
         </button>
       </div>
-      <p class="note">A few lines about what you need is plenty to get started.</p>
+      <p class="note">A few lines about what you need is plenty. I read every message myself.</p>
     </div>
 
     <div class="shortcuts">
@@ -44,7 +44,7 @@ const shortcuts = [
   </section>
 
   <section class="container trust">
-    <h2 class="h-md center">They've already given us their trust:</h2>
+    <h2 class="h-md center">Trusted by</h2>
     <div class="logos">
       {trustLogos.map((l) => <img src={l.src} alt={l.alt} loading="lazy" />)}
     </div>
@@ -53,7 +53,7 @@ const shortcuts = [
   <section class="again">
     <img src={ctaBackgrounds.earth} alt="" loading="lazy" />
     <div class="container inner">
-      <h2 class="h-lg">Or you can take a look at what we offer again!</h2>
+      <h2 class="h-lg">Not sure yet? See what I can help with.</h2>
       <a class="btn btn-light accent-text" href="/services">All Services</a>
     </div>
   </section>
@@ -83,7 +83,10 @@ const shortcuts = [
   .trust { padding-block: 16px 64px; }
   .trust h2 { max-width: 26rem; margin-inline: auto; }
   .logos { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; align-items: center; justify-items: center; margin-top: 36px; }
-  .logos img { max-height: 90px; width: auto; max-width: 100%; object-fit: contain; }
+  .logos img { max-height: 56px; width: auto; max-width: min(200px, 100%); object-fit: contain; }
+  /* Wordmark-only logos read larger, so cap them lower. */
+  .logos img[alt='Cinnamon'] { max-height: 26px; }
+  .logos img[alt='CodeIT'] { max-height: 44px; }
   @media (max-width: 760px) { .logos { grid-template-columns: 1fr 1fr; } }
 
   .again { position: relative; isolation: isolate; overflow: hidden; }
