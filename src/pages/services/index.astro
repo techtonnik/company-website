@@ -5,27 +5,41 @@ import Marquee from '../../components/Marquee.astro';
 import Cta from '../../components/Cta.astro';
 import Icon from '../../components/Icon.astro';
 import { heroVideos, ctaBackgrounds } from '../../data/site';
-import { allServices, modelDetails } from '../../data/services';
+import { allServices, modelDetails, stack } from '../../data/services';
+
+const stackGroups = [
+  { group: 'Front End', items: stack.frontend },
+  { group: 'Back End', items: stack.backend },
+  { group: 'Database', items: stack.database },
+  { group: 'Cloud', items: stack.cloud },
+  { group: 'Desktop', items: stack.desktop },
+];
 ---
-<Base title="Services | Techtonnik" description="Services tailored to your specific needs, exceeding your expectations every step of the way">
+<Base title="Services | Techtonnik" description="Senior software development: web, mobile and desktop apps, AI integrations and technical consulting.">
   <Hero video={heroVideos.space} short>
-    <h1 class="h-lg">Perfecting custom software development, one step at a time</h1>
-    <p class="lead">Services tailored to your specific needs, exceeding your expectations every step of the way</p>
+    <h1 class="h-lg">Software development, <span class="hl">done properly</span></h1>
+    <p class="lead">Web, mobile and desktop apps, AI integrations and technical guidance. Built by me, or by the right team from my network.</p>
     <div class="btn-row">
-      <a class="btn btn-primary" href="/contact">Reach Out!</a>
-      <a class="btn btn-ghost" href="/case-studies">Case Studies <Icon name="chevrons" size={20} /></a>
+      <a class="btn btn-primary" href="/contact">Get in Touch</a>
+      <a class="btn btn-ghost" href="/case-studies">See Projects <Icon name="chevrons" size={20} /></a>
     </div>
   </Hero>
   <Marquee />
 
   <section class="section container">
-    <h2 class="h-lg center">Our Services</h2>
+    <div class="section-head">
+      <div>
+        <h2 class="h-lg">What I <span class="hl">do</span></h2>
+        <p>Focused on software. Anything outside it, I'll point you to a partner who does it best.</p>
+      </div>
+    </div>
     <div class="grid grid-3 services">
       {allServices.map((s) => {
         const Tag = s.href ? 'a' : 'div';
         return (
           <Tag class:list={['card', 'service', { link: s.href }]} href={s.href}>
-            <h3 class="h-sm">{s.title} {s.href && <Icon name="external" size={18} />}</h3>
+            <Icon name={s.icon} size={32} class="s-icon" />
+            <h3 class="h-sm">{s.title} {s.href && <Icon name="external" size={18} class="ext" />}</h3>
             <p>{s.text}</p>
           </Tag>
         );
@@ -34,14 +48,21 @@ import { allServices, modelDetails } from '../../data/services';
   </section>
 
   <section class="section container" id="models">
-    <h2 class="h-lg center">Models Of Engagement</h2>
+    <div class="section-head">
+      <div>
+        <h2 class="h-lg">How we can <span class="hl">work together</span></h2>
+        <p>Most of my work is ongoing and hourly, joining projects that are already moving.</p>
+      </div>
+    </div>
     <div class="models">
-      {modelDetails.map((m) => (
-        <article class="model">
-          <div class="model-title"><h3 class="h-lg">{m.title}</h3></div>
+      {modelDetails.map((m, i) => (
+        <article class:list={['model', { featured: i === 0 }]}>
+          <div class="model-title">
+            {m.tag && <span class="tag">{m.tag}</span>}
+            <h3 class="h-lg">{m.title}</h3>
+          </div>
           <div>
             <p>{m.text}</p>
-            <h4 class="h-sm benefits-title">Benefits of this model</h4>
             <ul>
               {m.benefits.map((b) => <li><Icon name="check" size={20} /> {b}</li>)}
             </ul>
@@ -51,24 +72,59 @@ import { allServices, modelDetails } from '../../data/services';
     </div>
   </section>
 
-  <Cta title="You have an idea?" text="Let's make that idea a reality!" button="Contact Us" image={ctaBackgrounds.orbit} />
+  <section class="section container">
+    <div class="section-head">
+      <div>
+        <h2 class="h-lg">My <span class="hl">tech stack</span></h2>
+        <p>Modern, well-supported tools. Need something else? My network likely covers it.</p>
+      </div>
+    </div>
+    <div class="stack">
+      {stackGroups.map((g) => (
+        <div class="stack-group">
+          <h3 class="h-sm">{g.group}</h3>
+          <ul>
+            {g.items.map((t) => <li><img src={t.img} alt="" width="56" height="56" loading="lazy" /><span>{t.name}</span></li>)}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <Cta title="Have a project in mind?" text="Tell me about it, and I'll make sure it ends up with the right team." button="Get in Touch" image={ctaBackgrounds.orbit} />
 </Base>
 
 <style>
-  .services { margin-top: 48px; }
-  .service { display: flex; flex-direction: column; gap: 14px; min-height: 230px; }
+  :global(main .hero.short) { min-height: 440px; }
+  :global(main .hero-content) { padding-top: 96px; padding-bottom: 40px; }
+  :global(main .section) { padding-block: clamp(36px, 4.5vw, 64px); }
+  :global(main .section-head) { margin-bottom: clamp(20px, 2.5vw, 32px); }
+
+  .service { display: flex; flex-direction: column; gap: 12px; }
+  .service :global(.s-icon) { color: var(--accent); }
   .service h3 { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
   .service p { font-size: .92rem; color: var(--text-muted); }
   .service.link { transition: transform .2s, box-shadow .2s; }
   .service.link:hover { transform: translateY(-3px); box-shadow: 0 0 28px rgba(3,169,244,.7); }
-  .service.link h3 :global(svg) { color: var(--accent); }
+  .service :global(.ext) { color: var(--accent); }
 
-  .models { display: flex; flex-direction: column; gap: 32px; margin-top: 48px; }
-  .model { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: center; padding: clamp(28px, 4vw, 48px); border-radius: var(--radius-lg); background: linear-gradient(135deg, #022338, #22083f); border: 2px solid var(--line); }
+  .models { display: flex; flex-direction: column; gap: 16px; }
+  .model { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 40px; align-items: center; padding: clamp(24px, 3.5vw, 40px); border-radius: var(--radius-lg); background: var(--bg-raised); border: 2px solid var(--line); }
+  .model.featured { background: linear-gradient(135deg, #022338, #22083f); border-color: var(--purple); box-shadow: var(--glow); }
+  .model-title { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
   .model-title h3 { color: var(--accent); }
-  .benefits-title { margin: 28px 0 14px; }
-  ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+  .tag { padding: 3px 10px; border-radius: 999px; background: var(--purple); font-size: .72rem; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
+  ul { list-style: none; padding: 0; margin: 18px 0 0; display: grid; gap: 8px; }
   li { display: flex; align-items: center; gap: 12px; font-weight: 500; }
   li :global(svg) { color: var(--accent); flex: none; }
-  @media (max-width: 760px) { .model { grid-template-columns: 1fr; gap: 16px; } }
+  @media (max-width: 760px) { .model { grid-template-columns: 1fr; gap: 12px; } }
+
+  .stack { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; }
+  .stack-group { padding: 22px; border: 2px solid var(--line); border-radius: var(--radius-lg); background: var(--bg-raised); }
+  .stack-group h3 { margin-bottom: 16px; font-size: 1rem; }
+  .stack-group ul { margin: 0; gap: 12px; }
+  .stack-group li { font-size: .9rem; }
+  .stack-group img { width: 32px; height: 32px; object-fit: contain; }
+  @media (max-width: 1000px) { .stack { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (max-width: 600px) { .stack { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 </style>

@@ -22,7 +22,7 @@ const [t1, t2, t3] = page.stackTitle;
   </Hero>
 
   <section class="section container">
-    <h2 class="h-lg">Why <span class="hl">Techtonnik</span>?</h2>
+    <h2 class="h-lg">Why work <span class="hl">with me</span>?</h2>
     <p class="intro">{page.whyIntro}</p>
     <div class="why">
       {page.why.map((w, i) => (
@@ -93,10 +93,14 @@ const [t1, t2, t3] = page.stackTitle;
   </section>
 
   <Faq items={page.faq} />
-  <Cta title={page.cta} image={ctaBackgrounds.satellite} />
+  <Cta title={page.cta} text="Tell me about it, and I'll make sure it ends up with the right team." button="Get in Touch" image={ctaBackgrounds.satellite} />
 </Base>
 
 <style>
+  :global(main .hero.short) { min-height: 440px; }
+  :global(main .hero-content) { padding-top: 96px; padding-bottom: 40px; }
+  :global(main .section) { padding-block: clamp(36px, 4.5vw, 64px); }
+  :global(main .section-head) { margin-bottom: clamp(20px, 2.5vw, 32px); }
   .intro { margin-top: 14px; max-width: 34rem; font-weight: 500; }
   .intro.narrow { margin-inline: auto; }
   .why { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; margin-top: 40px; }
