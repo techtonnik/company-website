@@ -13,12 +13,12 @@ export const modelDetails = [
   {
     title: 'Hourly',
     tag: 'Most common',
-    text: 'Stevan joins your project as a senior developer and works alongside your team, billed by the hour. No fixed end date: we stay on for as long as you need, and you only pay for the time actually spent.',
+    text: 'Our founder, or someone from our internal pool of talent, joins your project as a senior developer and works alongside your team, billed by the hour.',
     benefits: ['Fixed hourly rate, agreed up front', 'Scale hours up or down at any time', 'Direct line to the person writing the code'],
   },
   {
     title: 'Dedicated Team',
-    text: 'For bigger products, we assemble a team of developers, designers and QA from our network, with Stevan as your single point of contact, for a predictable monthly fee.',
+    text: 'For bigger products, we assemble a team of developers, designers and QA from our network, with a single point of contact, for a predictable monthly fee.',
     benefits: ['A team picked for your project', 'Predictable monthly price', 'One point of contact for everything'],
   },
   {
