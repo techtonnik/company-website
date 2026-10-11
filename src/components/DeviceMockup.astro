@@ -1,0 +1,53 @@
+---
+// Browser window + phone mockup drawn in CSS around live-site screenshots.
+// Screenshots live in public/mockups and are refreshed with `npm run mockups`.
+interface Props {
+  desktop: string;
+  mobile?: string;
+  url: string;
+  /** Backdrop color behind the devices. */
+  tint?: string;
+  alt: string;
+}
+const { desktop, mobile, url, tint = '#0b2a4a', alt } = Astro.props;
+const host = new URL(url).hostname.replace(/^www\./, '');
+---
+<div class="mockup" style={`--tint:${tint}`}>
+  <div class="browser">
+    <div class="chrome" aria-hidden="true">
+      <span class="dots"><i></i><i></i><i></i></span>
+      <span class="address">{host}</span>
+    </div>
+    <img src={desktop} alt={alt} loading="lazy" width="1440" height="900" />
+  </div>
+  {mobile && (
+    <div class="phone" aria-hidden="true">
+      <img src={mobile} alt="" loading="lazy" width="390" height="664" />
+    </div>
+  )}
+</div>
+
+<style>
+  .mockup {
+    position: relative; aspect-ratio: 16 / 10.5; overflow: hidden;
+    background: radial-gradient(120% 90% at 20% 0%, color-mix(in srgb, var(--tint) 85%, white 15%) 0%, var(--tint) 55%, color-mix(in srgb, var(--tint) 60%, black) 100%);
+  }
+  .browser {
+    position: absolute; left: 7%; top: 11%; width: 78%;
+    border-radius: 8px; overflow: hidden; background: #fff;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, .45);
+  }
+  .chrome { display: flex; align-items: center; gap: 10px; height: 22px; padding: 0 8px; background: #e9ebef; }
+  .dots { display: flex; gap: 4px; }
+  .dots i { width: 7px; height: 7px; border-radius: 50%; background: #ff5f57; }
+  .dots i:nth-child(2) { background: #febc2e; }
+  .dots i:nth-child(3) { background: #28c840; }
+  .address { flex: 1; max-width: 60%; margin-inline: auto; padding: 2px 10px; border-radius: 4px; background: #fff; color: #555; font: 500 9px/1.4 var(--font-body); text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .browser img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; }
+  .phone {
+    position: absolute; right: 6%; bottom: -6%; width: 22%;
+    padding: 1.6%; border-radius: 18% / 10%; background: #111;
+    box-shadow: 0 0 0 1px #333 inset, 0 18px 36px rgba(0, 0, 0, .55);
+  }
+  .phone img { width: 100%; aspect-ratio: 390 / 664; object-fit: cover; object-position: top; border-radius: 14% / 8%; }
+</style>

@@ -3,7 +3,7 @@
 export const media = (id: string) => `/media/${id}~mv2.webp`;
 
 export const site = {
-  name: 'techtonnik',
+  name: 'Techtonnik',
   email: 'office@techtonnik.com',
   linkedin: 'https://www.linkedin.com/company/techtonnik',
   designrush: 'https://www.designrush.com/agency/profile/techtonnik',
@@ -77,13 +77,13 @@ export const portfolio = [
 
 export const testimonials = [
   { name: 'Adrian Solomon', role: 'Director @ helixconnect Europe SRL', img: media('249b31_96bc6c69e96f4feeb7611a07f7f5ee35'), quote: 'A great team of professionals that are eager to meet all expectations. Very flexible, reliable and creative. I am extremely pleased with their work and would trust them for future projects.' },
-  { name: 'Nikola Terzić', role: 'Co-Founder @ SerbLink', img: media('cce622_adec34ab63304650b90d822dc7f156de'), quote: 'We approached techtonnik with firm deadlines for our website. They are a fast pace and easy to work with team, with fluency in both Serbian and English. SerbLink will continue to leverage their expertise for our technical needs. I would highly recommend and gladly speak on their behalf!' },
-  { name: 'Dušan Perez Fuentes', role: 'Co-Founder @ Narcist', img: media('cce622_d5e5d9a026fc4bee877b28b473e99d9d'), quote: 'Fantastic work with a competent team, we received comments to improve the idea, and the members of the team from techtonnik were always accessible! Overall, we are extremely pleased with our partnership, and it is without a doubt that we highly recommend these guys.' },
-  { name: 'Petar Đorđević', role: 'Owner @ eFarma', img: media('cce622_79d24b4ede574429a15c9f94d663313d'), quote: 'I am incredibly impressed with the techtonnik team’s professionalism and creativity. They have gone above and beyond to ensure our brand reaches the highest standard. I would definitely recommend techtonnik to anyone looking for top-notch branding strategy services.' },
-  { name: 'Petar Vico', role: 'CTO @ SerbLink', img: media('cce622_3dfa7005db6646588501f2f4650a0b13'), quote: 'I had the pleasure of working with the techtonnik team for a large full-stack project for SerbLink. This team amazed me with not only their quality of code, but efficiency and promptness to deadlines. I would highly recommend partnering with them in your endeavours for top-tier software development' },
-  { name: 'Bojan Goretić', role: 'Founder @ Investiva', img: media('cce622_612994edd35f447c9b9e0c8ce6e5ecb3'), quote: 'Kudos to the techtonnik team for their exceptional work! Their efficiency ensured the job was done seamlessly. Their open communication and ability to adapt to changes mid-project were invaluable, making the collaboration a success.' },
-  { name: 'Ivana Lešević', role: 'Marketing Manager @ Destilerija Gorska', img: media('249b31_791499c87a6e4b09b9cd9c12ac13e773'), quote: "It's all about style and efficiency for us. Gorska is no ordinary rakija, so we needed an extraordinary team. That team happens to be the techtonnik team." },
-  { name: 'Luka Stojaković', role: 'Sales Manager @ Super Stan', img: media('249b31_a320e00430764a15a319627b762dc5b8'), quote: "The main part I'd like to highlight in our collaboration with techtonnik was the communication - always available, always reliable. My highest recommendations for Stevan and his team!" },
+  { name: 'Nikola Terzić', role: 'Co-Founder @ SerbLink', img: media('cce622_adec34ab63304650b90d822dc7f156de'), quote: 'We approached Techtonnik with firm deadlines for our website. They are a fast pace and easy to work with team, with fluency in both Serbian and English. SerbLink will continue to leverage their expertise for our technical needs. I would highly recommend and gladly speak on their behalf!' },
+  { name: 'Dušan Perez Fuentes', role: 'Co-Founder @ Narcist', img: media('cce622_d5e5d9a026fc4bee877b28b473e99d9d'), quote: 'Fantastic work with a competent team, we received comments to improve the idea, and the members of the team from Techtonnik were always accessible! Overall, we are extremely pleased with our partnership, and it is without a doubt that we highly recommend these guys.' },
+  { name: 'Petar Đorđević', role: 'Owner @ eFarma', img: media('cce622_79d24b4ede574429a15c9f94d663313d'), quote: 'I am incredibly impressed with the Techtonnik team’s professionalism and creativity. They have gone above and beyond to ensure our brand reaches the highest standard. I would definitely recommend Techtonnik to anyone looking for top-notch branding strategy services.' },
+  { name: 'Petar Vico', role: 'CTO @ SerbLink', img: media('cce622_3dfa7005db6646588501f2f4650a0b13'), quote: 'I had the pleasure of working with the Techtonnik team for a large full-stack project for SerbLink. This team amazed me with not only their quality of code, but efficiency and promptness to deadlines. I would highly recommend partnering with them in your endeavours for top-tier software development' },
+  { name: 'Bojan Goretić', role: 'Founder @ Investiva', img: media('cce622_612994edd35f447c9b9e0c8ce6e5ecb3'), quote: 'Kudos to the Techtonnik team for their exceptional work! Their efficiency ensured the job was done seamlessly. Their open communication and ability to adapt to changes mid-project were invaluable, making the collaboration a success.' },
+  { name: 'Ivana Lešević', role: 'Marketing Manager @ Destilerija Gorska', img: media('249b31_791499c87a6e4b09b9cd9c12ac13e773'), quote: "It's all about style and efficiency for us. Gorska is no ordinary rakija, so we needed an extraordinary team. That team happens to be the Techtonnik team." },
+  { name: 'Luka Stojaković', role: 'Sales Manager @ Super Stan', img: media('249b31_a320e00430764a15a319627b762dc5b8'), quote: "The main part I'd like to highlight in our collaboration with Techtonnik was the communication - always available, always reliable. My highest recommendations for Stevan and his team!" },
 ];
 
 export const engagementModels = [
@@ -93,8 +93,8 @@ export const engagementModels = [
 ];
 
 export const homeFaq = [
-  { q: 'Where is techtonnik based at?', a: ['techtonnik is based in Serbia, with most of the members living in Belgrade, the country’s capital.'] },
-  { q: 'How big is the techtonnik team?', a: ["The size of the techtonnik team varies due to constant improvements to our talent pool. Our primary focus is to consistently have top-tier professionals on board. Our commitment to quality means we're always on the lookout for exceptional talent to join us."] },
+  { q: 'Where is Techtonnik based at?', a: ['Techtonnik is based in Serbia, with most of the members living in Belgrade, the country’s capital.'] },
+  { q: 'How big is the Techtonnik team?', a: ["The size of the Techtonnik team varies due to constant improvements to our talent pool. Our primary focus is to consistently have top-tier professionals on board. Our commitment to quality means we're always on the lookout for exceptional talent to join us."] },
   {
     q: 'Which model of engagement is ideal for my project?',
     a: [

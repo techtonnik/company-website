@@ -6,10 +6,10 @@ import Hero from '../components/Hero.astro';
 import Marquee from '../components/Marquee.astro';
 import Icon from '../components/Icon.astro';
 import Testimonials from '../components/Testimonials.astro';
-import Faq from '../components/Faq.astro';
+import DeviceMockup from '../components/DeviceMockup.astro';
 import Cta from '../components/Cta.astro';
 import { heroVideos, ctaBackgrounds, media } from '../data/site';
-import { caseStudies, partners } from '../data/showcase';
+import { caseStudies, partners, type ShowcaseItem } from '../data/showcase';
 
 const ways = [
   {
@@ -36,10 +36,11 @@ const ways = [
 ];
 
 const byTitle = (title: string) => caseStudies.find((c) => c.title === title)!;
-const featured = [
-  { ...byTitle('Ontopo'), scope: 'Frontend · Backend · QA' },
-  { ...byTitle('Tennilytics'), scope: 'Web app · Mobile app · Website' },
-  { ...byTitle('SerbLink'), scope: 'Full-stack platform' },
+type Featured = ShowcaseItem & { scope: string; mockup: string; tint: string; via?: { name: string; href: string } };
+const featured: Featured[] = [
+  { ...byTitle('Ontopo'), scope: 'Frontend · Backend · QA', mockup: 'ontopo', tint: '#0f3d1c', via: { name: 'CodeIT', href: 'https://www.codeit.rs/' } },
+  { ...byTitle('Tennilytics'), scope: 'Web app · Mobile app · Website', mockup: 'tennilytics', tint: '#2a3a12' },
+  { ...byTitle('SerbLink'), scope: 'Full-stack platform', mockup: 'serblink', tint: '#0a2f8f' },
 ];
 
 const strengths: Record<string, string> = {
@@ -59,23 +60,8 @@ const steps = [
   { title: 'Scale as you go', text: 'Add people, pause, or wrap up at any point. I stay your point of contact throughout.' },
 ];
 
-const faq = [
-  { q: 'Is techtonnik a company or one person?', a: ["techtonnik is me, Stevan Radovanović. I'm a software developer based in Belgrade, Serbia. Over the years I've built a network of trusted developers, designers and partner companies, which lets me take on projects far bigger than one person could handle alone."] },
-  { q: 'Who actually writes the code?', a: ["Depending on the project: me, a team I put together and lead, or a partner company I introduce you to. You'll always know exactly who is working on your project before anything starts."] },
-  { q: "What if my project isn't a good fit for you?", a: ["Then I'll say so, and introduce you to someone from my network who is a better fit. That's a core part of what I do, not a fallback."] },
-  {
-    q: 'How do you price projects?',
-    a: [
-      'There are three options, and I\'ll help you pick the right one:',
-      '**Fixed Price:** for well-defined projects with a clear scope.',
-      '**Time & Material:** for longer projects with evolving requirements.',
-      '**Dedicated Team:** for ongoing work where you need a team working exclusively for you.',
-    ],
-  },
-  { q: 'Can you take over or maintain an existing app?', a: ["Yes. Legacy codebases, half-finished projects and apps that need new features are all fair game. Reach out and we'll take a look."] },
-];
 ---
-<Base title="World-class On-Demand Software Development | techtonnik" description="Building AI-powered web, mobile and desktop apps: by joining your team, assembling the right one, or connecting you with the partner that fits your project best.">
+<Base title="World-class On-Demand Software Development | Techtonnik" description="Building AI-powered web, mobile and desktop apps: by joining your team, assembling the right one, or connecting you with the partner that fits your project best.">
   <meta slot="head" name="robots" content="noindex" />
 
   <div class="proposal-flag">Proposal: Home Page 2 · <a href="/">view current home</a></div>
@@ -121,17 +107,27 @@ const faq = [
     </div>
     <div class="apps">
       {featured.map((app) => (
-        <a class="app" href={app.links[0]?.href ?? '/case-studies'} target="_blank" rel="noopener">
-          <div class="app-media">
-            <img class="app-bg" src={app.bg} alt="" loading="lazy" />
-            {app.shot && <img class="app-shot" src={app.shot} alt={`${app.title} preview`} loading="lazy" />}
-          </div>
+        <article class="app">
+          <a href={app.links[0].href} target="_blank" rel="noopener" class="app-media">
+            <DeviceMockup
+              desktop={`/mockups/${app.mockup}-desktop.jpg`}
+              mobile={`/mockups/${app.mockup}-mobile.jpg`}
+              url={app.links[0].href}
+              tint={app.tint}
+              alt={`${app.title} website`}
+            />
+          </a>
           <div class="app-body">
             <p class="scope">{app.scope}</p>
-            <h3 class="h-sm">{app.title} <Icon name="external" size={18} /></h3>
+            <h3 class="h-sm">
+              <a href={app.links[0].href} target="_blank" rel="noopener">{app.title}</a>
+              {app.via && (
+                <span class="via">via <a href={app.via.href} target="_blank" rel="noopener">{app.via.name}</a></span>
+              )}
+            </h3>
             <p>{app.tagline}</p>
           </div>
-        </a>
+        </article>
       ))}
     </div>
 
@@ -177,11 +173,11 @@ const faq = [
 
   <!-- About -->
   <section class="section container about">
-    <img src={media('cce622_48e5e8feccb34fe580821d2107417bfc')} alt="Stevan Radovanović" width="438" height="572" loading="lazy" />
+    <img src={media('cce622_48e5e8feccb34fe580821d2107417bfc')} alt="Stevan Radovanović" width="340" height="425" loading="lazy" />
     <div>
-      <h2 class="h-lg">About <span class="hl">techtonnik</span></h2>
-      <p>I started techtonnik to do software development properly: honest communication, clean code and long-term support. Along the way I've worked with dozens of clients and connected many of them with the people best suited to their projects.</p>
-      <p>Today, techtonnik is how I work: senior development on my side, backed by a network of partners I trust, so every project ends up in the right hands.</p>
+      <h2 class="h-lg">About <span class="hl">Techtonnik</span></h2>
+      <p>I started Techtonnik to do software development properly: honest communication, clean code and long-term support. Along the way I've worked with dozens of clients and connected many of them with the people best suited to their projects.</p>
+      <p>Today, Techtonnik is how I work: senior development on my side, backed by a network of partners I trust, so every project ends up in the right hands.</p>
       <div class="stats">
         <div><span class="big">25+</span><span>Projects delivered</span></div>
         <div><span class="big">1000+</span><span>Years of combined experience across the network</span></div>
@@ -189,8 +185,6 @@ const faq = [
       </div>
     </div>
   </section>
-
-  <Faq items={faq} />
 
   <Cta title="Got a project in mind?" text="Tell me about it, and I'll make sure it ends up with the right team." button="Start a Project" image={ctaBackgrounds.satellite} />
 </Base>
@@ -217,12 +211,13 @@ const faq = [
   .apps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
   .app { display: flex; flex-direction: column; border: 2px solid rgba(255,255,255,.14); border-radius: var(--radius-lg); overflow: hidden; background: var(--bg-raised); transition: border-color .2s, transform .2s; }
   .app:hover { border-color: var(--accent); transform: translateY(-3px); }
-  .app-media { position: relative; aspect-ratio: 16 / 10; overflow: hidden; display: grid; place-items: center; }
-  .app-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(.45); }
-  .app-shot { position: relative; max-height: 82%; width: auto; filter: drop-shadow(0 12px 24px rgba(0,0,0,.5)); }
+  .app-media { display: block; }
   .app-body { padding: 20px 22px 24px; display: flex; flex-direction: column; gap: 6px; }
-  .app-body h3 { display: flex; justify-content: space-between; align-items: center; }
-  .app-body h3 :global(svg) { color: var(--accent); }
+  .app-body h3 { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 10px; }
+  .app-body h3 > a:hover { color: var(--accent); }
+  .via { font: 500 .85rem var(--font-body); color: var(--text-muted); }
+  .via a { color: var(--accent); font-weight: 600; }
+  .via a:hover { text-decoration: underline; }
   .app-body p:last-child { font-size: .9rem; color: var(--text-muted); }
   .scope { font-size: .75rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--accent); }
   @media (max-width: 900px) { .apps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -250,12 +245,12 @@ const faq = [
   @media (max-width: 860px) { .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   @media (max-width: 520px) { .steps { grid-template-columns: 1fr; } }
 
-  .about { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(32px, 6vw, 80px); align-items: center; }
-  .about img { width: 100%; max-width: 438px; border-radius: var(--radius); border: 2px solid var(--accent); box-shadow: var(--glow); }
-  .about p { margin-top: 18px; max-width: 36rem; }
-  .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin-top: 36px; }
+  .about { display: grid; grid-template-columns: 340px minmax(0, 1fr); gap: clamp(32px, 5vw, 64px); align-items: center; }
+  .about img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: top; border-radius: var(--radius); border: 2px solid var(--accent); box-shadow: var(--glow); }
+  .about p { margin-top: 14px; max-width: 40rem; }
+  .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin-top: 28px; }
   .stats div { display: flex; flex-direction: column; gap: 4px; font-size: .85rem; color: var(--text-muted); }
   .big { font: 700 2.6rem/1 var(--font-head); color: var(--text); }
-  @media (max-width: 760px) { .about { grid-template-columns: 1fr; } .stats { grid-template-columns: 1fr; } }
+  @media (max-width: 760px) { .about { grid-template-columns: 1fr; } .about img { max-width: 300px; } .stats { grid-template-columns: 1fr; } }
 
 </style>

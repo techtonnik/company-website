@@ -12,7 +12,7 @@ export function getStaticPaths() {
 const { cs } = Astro.props as { cs: CaseStudyDetail };
 const [mainShot, ...thumbs] = cs.gallery;
 ---
-<Base title={`${cs.title} | techtonnik`} description={cs.subtitle}>
+<Base title={`${cs.title} | Techtonnik`} description={cs.subtitle}>
   <section class="cs-hero" style={`--tint:${cs.heroColor}`}>
     <img class="bg" src={cs.hero} alt="" fetchpriority="high" />
     <div class="container inner">

@@ -9,7 +9,7 @@ interface Props {
   image?: string;
 }
 
-const { title, description = 'techtonnik is a software development agency that offers world-class, on-demand solutions.', image = '/og.png' } = Astro.props;
+const { title, description = 'Techtonnik is a software development agency that offers world-class, on-demand solutions.', image = '/og.png' } = Astro.props;
 const canonical = new URL(Astro.url.pathname.replace(/\/$/, '') || '/', Astro.site);
 const ogImage = new URL(image, Astro.site);
 ---
@@ -24,7 +24,7 @@ const ogImage = new URL(image, Astro.site);
     <link rel="icon" href="/favicon.png" type="image/png" />
     <meta name="theme-color" content="#00040d" />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="techtonnik" />
+    <meta property="og:site_name" content="Techtonnik" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />

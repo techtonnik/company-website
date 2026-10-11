@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "mockups": "node scripts/capture-mockups.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
@@ -16,6 +17,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
+    "playwright": "^1.52.0",
     "typescript": "^5.9.3"
   }
 }

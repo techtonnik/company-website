@@ -14,10 +14,10 @@ import { isExternal } from '../lib/rich';
 const featured = testimonials.find((t) => t.name === 'Nikola Terzić')!;
 const [webDev, ...otherOffers] = homeOffers;
 ---
-<Base title="World-class On-Demand Software Development Agency | techtonnik">
+<Base title="World-class On-Demand Software Development Agency | Techtonnik">
   <Hero video={heroVideos.home}>
     <h1 class="h-xl">Quality solutions of the<br /> <span class="hl">highest magnitude</span></h1>
-    <p class="lead"><span class="hl">techtonnik</span> is a software development agency that offers world-class, on-demand solutions.</p>
+    <p class="lead"><span class="hl">Techtonnik</span> is a software development agency that offers world-class, on-demand solutions.</p>
     <div class="btn-row">
       <a class="btn btn-primary" href="/contact">Let's Collaborate!</a>
       <a class="btn btn-ghost" href="/case-studies">Case Studies <Icon name="chevrons" size={20} /></a>
@@ -55,7 +55,7 @@ const [webDev, ...otherOffers] = homeOffers;
 
   <!-- About / stats -->
   <section class="section container">
-    <h2 class="h-lg">techtonn-<span class="hl">who?</span></h2>
+    <h2 class="h-lg">Techtonn-<span class="hl">who?</span></h2>
     <div class="stats">
       <div class="tile wide blue" style={`--bg:url(${media('cce622_48fa662757be4c5abb94941258c40637')})`}>
         <h3 class="h-md">Industry level work with premium long-term support</h3>
@@ -121,7 +121,7 @@ const [webDev, ...otherOffers] = homeOffers;
     <div class="container founder-inner">
       <div>
         <h2 class="h-lg">A word or two from our founder</h2>
-        <blockquote>"Being passionate about our craft is our key to success! I've poured my heart and soul into making techtonnik what it is today, and I've had help from some amazing individuals along the way."</blockquote>
+        <blockquote>"Being passionate about our craft is our key to success! I've poured my heart and soul into making Techtonnik what it is today, and I've had help from some amazing individuals along the way."</blockquote>
         <p class="sig">- Stevan Radovanović</p>
       </div>
       <img src={media('cce622_48e5e8feccb34fe580821d2107417bfc')} alt="Stevan Radovanović" loading="lazy" width="438" height="572" />
@@ -199,6 +199,6 @@ const [webDev, ...otherOffers] = homeOffers;
   .founder-inner { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 48px; align-items: center; }
   .founder blockquote { margin: 24px 0 16px; font-size: clamp(1.1rem, 1.8vw, 1.4rem); font-weight: 600; max-width: 32rem; }
   .sig { font: 600 1.3rem var(--font-head); }
-  .founder img { justify-self: end; width: min(438px, 100%); border-radius: 6px; border: 2px solid var(--text); box-shadow: 0 0 28px rgba(0,0,0,.25); }
+  .founder img { justify-self: end; width: min(438px, 100%); aspect-ratio: 438 / 572; object-fit: cover; border-radius: 6px; border: 2px solid var(--text); box-shadow: 0 0 28px rgba(0,0,0,.25); }
   @media (max-width: 760px) { .founder-inner { grid-template-columns: 1fr; } .founder img { justify-self: start; } }
 </style>

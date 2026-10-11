@@ -2,7 +2,7 @@
 import { marqueeLogos } from '../data/site';
 
 interface Props {
-  /** Repeated "techtonnik" wordmark band instead of client logos. */
+  /** Repeated "Techtonnik" wordmark band instead of client logos. */
   wordmark?: boolean;
 }
 const { wordmark = false } = Astro.props;
@@ -14,7 +14,7 @@ const logomark = '/media/cce622_db2c1869cd9141de94a9d96061c9aa34~mv2.webp';
       <div class="group" aria-hidden={copy === 1 ? 'true' : undefined}>
         {wordmark
           ? Array.from({ length: 6 }, () => (
-              <span class="word">techtonnik <img src={logomark} alt="" width="48" height="43" /></span>
+              <span class="word">Techtonnik <img src={logomark} alt="" width="48" height="43" /></span>
             ))
           : marqueeLogos.map((l) => <img src={l.src} alt={copy === 0 ? l.alt : ''} height="44" loading="lazy" />)}
       </div>
