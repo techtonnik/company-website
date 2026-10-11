@@ -8,8 +8,6 @@ export type Product = {
   /** Short platform / type labels shown as tags. */
   tags: string[];
   logo?: string;
-  /** Wordmark logos render wider than square icons. */
-  wordmark?: boolean;
   link?: { label: string; href: string };
 };
 
@@ -55,8 +53,7 @@ export const products: Product[] = [
     tagline: 'Scheduling for complex businesses',
     text: 'A desktop application for building and managing intricate schedules that fit the way a business actually works.',
     tags: ['Desktop app'],
-    logo: media('cce622_dd2e9f3eed2b4b029cd8bcd5ebcc8b62'),
-    wordmark: true,
+    logo: '/media/product-bca-scheduler.png',
   },
   {
     name: 'Agroinvest',
