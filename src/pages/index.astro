@@ -70,12 +70,10 @@ const strengths: Record<string, string> = {
   TrinitySmartIT: 'On-demand development teams',
   helixconnect: 'Innovation & NGO projects',
   Tremium: 'Software development',
+  Cinnamon: 'Design, development & deployment',
+  Cognitika: 'Educational game studio',
 };
-const network = [
-  ...partners.map((p) => ({ logo: p.logo, name: p.logoAlt, text: strengths[p.logoAlt], href: p.links[0].href })),
-  { logo: '/media/partner-cinnamon.svg', name: 'Cinnamon', text: 'Design, development & deployment', href: 'https://www.cinnamon.agency/' },
-  { logo: '/media/partner-cognitika.png', name: 'Cognitika', text: 'Educational game studio', href: 'https://cognitika.com/' },
-];
+const network = partners.map((p) => ({ logo: p.logo, name: p.logoAlt, text: strengths[p.logoAlt], href: p.links[0].href }));
 
 const steps = [
   { title: 'Tell me what you need', text: 'A short call about your product, timeline and budget. No sales pitch.' },

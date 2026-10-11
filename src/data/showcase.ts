@@ -168,13 +168,17 @@ export const products: ShowcaseItem[] = [
 export type Partner = {
   logo: string;
   logoAlt: string;
-  shot: string;
+  /** Static preview image, or a live-site mockup from public/mockups (see scripts/capture-mockups.mjs). */
+  shot?: string;
+  mockup?: { name: string; url: string; tint: string };
   title: string;
   text: string;
   links: Link[];
   quote: string;
   author: string;
-  avatar: string;
+  avatar?: string;
+  /** Testimonial not received yet: rendered visibly as a placeholder. */
+  placeholder?: boolean;
 };
 
 export const partners: Partner[] = [
@@ -233,5 +237,23 @@ export const partners: Partner[] = [
     links: [{ label: 'Visit Website', href: 'https://tremium.net/' }, { label: 'Follow Them', href: 'https://www.instagram.com/tremium_software/' }],
     quote: '"An unexpected encounter has grown into a great collaboration. Techtonnik is a reliable team, and it’s always a pleasure to collaborate with them."',
     author: 'Dunja Stevanović, Business Partner & Technical Team Lead @ Tremium', avatar: media('249b31_cc3b5387d0594532865799602ea3046d'),
+  },
+  {
+    logo: '/media/partner-cinnamon.svg', logoAlt: 'Cinnamon',
+    mockup: { name: 'cinnamon', url: 'https://www.cinnamon.agency/', tint: '#3b2a8f' },
+    title: 'Design, Develop, Deploy!',
+    text: 'Cinnamon is a one-stop shop to design, develop and deploy digital products, with AI-accelerated development at its core. Together, we are building Zirtue, the bill-pay lending platform powered by friends and family.',
+    links: [{ label: 'Visit Website', href: 'https://www.cinnamon.agency/' }, { label: 'LinkedIn', href: 'https://www.linkedin.com/company/cinnamon-llc' }],
+    quote: 'Placeholder: a short testimonial from Cinnamon goes here.',
+    author: 'Name Surname, Role @ Cinnamon', placeholder: true,
+  },
+  {
+    logo: '/media/partner-cognitika.png', logoAlt: 'Cognitika',
+    mockup: { name: 'cognitika', url: 'https://cognitika.com/', tint: '#7a6a2a' },
+    title: 'Learning Through Play',
+    text: 'Cognitika is a non-profit studio from Serbia developing educational games, built with subject matter experts and tested with real learners, from extended reality all the way to tabletop.',
+    links: [{ label: 'Visit Website', href: 'https://cognitika.com/' }, { label: 'LinkedIn', href: 'https://www.linkedin.com/company/cognitika-play' }],
+    quote: 'Placeholder: a short testimonial from Cognitika goes here.',
+    author: 'Name Surname, Role @ Cognitika', placeholder: true,
   },
 ];

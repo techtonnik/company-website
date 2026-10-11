@@ -10,6 +10,8 @@ const sites = {
   serblink: 'https://serblink.org/',
   zirtue: 'https://www.zirtue.com/',
   superstan: 'https://www.superstanbg.rs/',
+  cinnamon: 'https://www.cinnamon.agency/',
+  cognitika: 'https://cognitika.com/',
 };
 
 const only = process.argv.slice(2);
@@ -31,7 +33,8 @@ async function shoot(browser, key, url, kind) {
       : { viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1.5 },
   );
   const page = await context.newPage();
-  await page.goto(url, { waitUntil: 'networkidle', timeout: 60000 }).catch(() => {});
+  // networkidle can hang on sites with long-polling; fall through on timeout.
+  await page.goto(url, { waitUntil: 'networkidle', timeout: 30000 }).catch(() => {});
   // Let autoplaying videos get past their first (often black) frames.
   await page.evaluate(() => document.querySelectorAll('video').forEach((v) => { v.muted = true; v.play().catch(() => {}); })).catch(() => {});
   await page.waitForTimeout(4000);
