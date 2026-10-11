@@ -9,7 +9,8 @@ import Testimonials from '../components/Testimonials.astro';
 import DeviceMockup from '../components/DeviceMockup.astro';
 import Cta from '../components/Cta.astro';
 import { heroVideos, ctaBackgrounds, media } from '../data/site';
-import { caseStudies, partners, type ShowcaseItem } from '../data/showcase';
+import { partners } from '../data/showcase';
+import { isExternal } from '../lib/rich';
 
 const ways = [
   {
@@ -35,13 +36,27 @@ const ways = [
   },
 ];
 
-const byTitle = (title: string) => caseStudies.find((c) => c.title === title)!;
-type Featured = ShowcaseItem & { scope: string; mockup: string; tint: string; via?: { name: string; href: string } };
+type Featured = {
+  title: string;
+  tagline: string;
+  scope: string;
+  /** Live site, shown in the mockup's address bar. */
+  site: string;
+  /** Where the card links; defaults to the live site. */
+  href?: string;
+  /** Screenshot basename in public/mockups (see scripts/capture-mockups.mjs). */
+  mockup: string;
+  tint: string;
+  via?: { name: string; href: string };
+};
 const featured: Featured[] = [
-  { ...byTitle('Ontopo'), scope: 'Frontend · Backend · QA', mockup: 'ontopo', tint: '#0f3d1c', via: { name: 'CodeIT', href: 'https://www.codeit.rs/' } },
-  { ...byTitle('Tennilytics'), scope: 'Web app · Mobile app · Website', mockup: 'tennilytics', tint: '#2a3a12' },
-  { ...byTitle('SerbLink'), scope: 'Full-stack platform', mockup: 'serblink', tint: '#0a2f8f' },
+  { title: 'Ontopo', tagline: 'Book a Table at Restaurants Around the World', scope: 'Frontend · Backend · QA', site: 'https://ontopo.com/en/rs/belgrade', mockup: 'ontopo', tint: '#0f3d1c', via: { name: 'CodeIT', href: 'https://www.codeit.rs/' } },
+  { title: 'Zirtue', tagline: 'Bill Pay Loans Powered by Friends & Family', scope: 'Fintech platform', site: 'https://www.zirtue.com/', mockup: 'zirtue', tint: '#0b3a8c', via: { name: 'Cinnamon', href: 'https://www.cinnamon.agency/' } },
+  { title: 'Tennilytics', tagline: 'Experience Tennis Like The Pros', scope: 'Web app · Mobile app · Website', site: 'https://www.tennilytics.com/', mockup: 'tennilytics', tint: '#2a3a12' },
+  { title: 'SerbLink', tagline: 'Connecting Serbian Professionals!', scope: 'Full-stack platform', site: 'https://serblink.org/', mockup: 'serblink', tint: '#0a2f8f' },
+  { title: 'Super Stan', tagline: 'Find Your Dream Home!', scope: 'Web app · UI/UX', site: 'https://www.superstanbg.rs/', href: '/case-studies/super-stan', mockup: 'superstan', tint: '#6e1414' },
 ];
+const linkAttrs = (href: string) => (isExternal(href) ? { target: '_blank', rel: 'noopener' } : {});
 
 const strengths: Record<string, string> = {
   CodeIT: 'Established software company',
@@ -52,6 +67,11 @@ const strengths: Record<string, string> = {
   helixconnect: 'Innovation & NGO projects',
   Tremium: 'Software development',
 };
+const network = [
+  ...partners.map((p) => ({ logo: p.logo, name: p.logoAlt, text: strengths[p.logoAlt] })),
+  { logo: '/media/partner-cinnamon.svg', name: 'Cinnamon', text: 'Design, development & deployment' },
+  { logo: '/media/partner-cognitika.png', name: 'Cognitika', text: 'Educational game studio' },
+];
 
 const steps = [
   { title: 'Tell me what you need', text: 'A short call about your product, timeline and budget. No sales pitch.' },
@@ -108,11 +128,11 @@ const steps = [
     <div class="apps">
       {featured.map((app) => (
         <article class="app">
-          <a href={app.links[0].href} target="_blank" rel="noopener" class="app-media">
+          <a href={app.href ?? app.site} {...linkAttrs(app.href ?? app.site)} class="app-media">
             <DeviceMockup
               desktop={`/mockups/${app.mockup}-desktop.jpg`}
               mobile={`/mockups/${app.mockup}-mobile.jpg`}
-              url={app.links[0].href}
+              url={app.site}
               tint={app.tint}
               alt={`${app.title} website`}
             />
@@ -120,7 +140,7 @@ const steps = [
           <div class="app-body">
             <p class="scope">{app.scope}</p>
             <h3 class="h-sm">
-              <a href={app.links[0].href} target="_blank" rel="noopener">{app.title}</a>
+              <a href={app.href ?? app.site} {...linkAttrs(app.href ?? app.site)}>{app.title}</a>
               {app.via && (
                 <span class="via">via <a href={app.via.href} target="_blank" rel="noopener">{app.via.name}</a></span>
               )}
@@ -144,17 +164,17 @@ const steps = [
         <a class="btn btn-light accent-text" href="/partners">All Partners</a>
       </div>
       <div class="partner-grid">
-        {partners.map((p) => (
+        {network.map((p) => (
           <div class="partner">
-            <img src={p.logo} alt={p.logoAlt} loading="lazy" />
-            <p>{strengths[p.logoAlt]}</p>
+            <img src={p.logo} alt={p.name} loading="lazy" />
+            <p>{p.text}</p>
           </div>
         ))}
-        <a class="partner join" href="/contact">
-          <span class="h-sm">Your company?</span>
-          <p>Become a partner <Icon name="arrow" size={16} /></p>
-        </a>
       </div>
+      <a class="join" href="/contact">
+        <span class="h-sm">Your company?</span>
+        <span class="join-cta">Become a partner <Icon name="arrow" size={16} /></span>
+      </a>
 
       <h3 class="h-md steps-title">How a match works</h3>
       <ol class="steps">
@@ -181,7 +201,7 @@ const steps = [
       <div class="stats">
         <div><span class="big">25+</span><span>Projects delivered</span></div>
         <div><span class="big">1000+</span><span>Years of combined experience across the network</span></div>
-        <div><span class="big">7</span><span>Partner companies</span></div>
+        <div><span class="big">{network.length}</span><span>Partner companies</span></div>
       </div>
     </div>
   </section>
@@ -208,8 +228,8 @@ const steps = [
   .num { position: absolute; top: 22px; right: 26px; font: 700 2.2rem/1 var(--font-head); opacity: .18; }
   .way p { font-size: .95rem; }
 
-  .apps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
-  .app { display: flex; flex-direction: column; border: 2px solid rgba(255,255,255,.14); border-radius: var(--radius-lg); overflow: hidden; background: var(--bg-raised); transition: border-color .2s, transform .2s; }
+  .apps { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; }
+  .app { flex: 0 1 calc((100% - 48px) / 3); display: flex; flex-direction: column; border: 2px solid rgba(255,255,255,.14); border-radius: var(--radius-lg); overflow: hidden; background: var(--bg-raised); transition: border-color .2s, transform .2s; }
   .app:hover { border-color: var(--accent); transform: translateY(-3px); }
   .app-media { display: block; }
   .app-body { padding: 20px 22px 24px; display: flex; flex-direction: column; gap: 6px; }
@@ -220,20 +240,22 @@ const steps = [
   .via a:hover { text-decoration: underline; }
   .app-body p:last-child { font-size: .9rem; color: var(--text-muted); }
   .scope { font-size: .75rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--accent); }
-  @media (max-width: 900px) { .apps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  @media (max-width: 560px) { .apps { grid-template-columns: 1fr; } }
+  @media (max-width: 900px) { .app { flex-basis: calc((100% - 24px) / 2); } }
+  @media (max-width: 560px) { .app { flex-basis: 100%; } }
 
 
   .network { background: var(--accent); padding-block: clamp(40px, 5vw, 64px); margin-block: clamp(20px, 3vw, 40px); }
   .network .section-head p { font-weight: 500; }
   .hl-dark { color: var(--bg); }
-  .partner-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+  .partner-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
   .partner { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; min-height: 160px; padding: 24px 18px; border-radius: var(--radius); background: rgba(0, 4, 13, .22); text-align: center; }
   .partner img { max-height: 52px; max-width: 80%; width: auto; object-fit: contain; }
   .partner p { font-size: .85rem; font-weight: 600; }
-  .join { background: var(--bg); transition: transform .2s; }
-  .join:hover { transform: translateY(-3px); }
-  .join p { display: flex; align-items: center; gap: 6px; color: var(--accent); }
+  /* Wide wordmark-only logo: shrink to sit level with the others. */
+  .partner img[alt='Cinnamon'] { max-height: 34px; }
+  .join { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 14px; padding: 20px 28px; border-radius: var(--radius); background: var(--bg); transition: transform .2s; }
+  .join:hover { transform: translateY(-2px); }
+  .join-cta { display: flex; align-items: center; gap: 6px; color: var(--accent); font-weight: 600; font-size: .9rem; }
   @media (max-width: 860px) { .partner-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
   .steps-title { margin: 40px 0 20px; }

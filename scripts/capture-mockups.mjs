@@ -7,6 +7,8 @@ const sites = {
   ontopo: 'https://ontopo.com/en/rs/belgrade',
   tennilytics: 'https://www.tennilytics.com/',
   serblink: 'https://serblink.org/',
+  zirtue: 'https://www.zirtue.com/',
+  superstan: 'https://www.superstanbg.rs/',
 };
 
 const only = process.argv.slice(2);
