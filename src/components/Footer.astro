@@ -1,8 +1,9 @@
 ---
+import { pagePath } from '../lib/url';
 import { footerNav, site } from '../data/site';
 import Icon from './Icon.astro';
 
-const path = Astro.url.pathname.replace(/\/$/, '');
+const path = pagePath(Astro.url.pathname);
 ---
 <footer class="site-footer">
   <div class="container">

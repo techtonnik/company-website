@@ -1,8 +1,9 @@
 ---
+import { pagePath } from '../lib/url';
 import { nav, site } from '../data/site';
 import Icon from './Icon.astro';
 
-const path = Astro.url.pathname.replace(/\/$/, '');
+const path = pagePath(Astro.url.pathname);
 const isActive = (href: string) => path === href || path.startsWith(href + '/');
 ---
 <header class="site-header" data-header>
