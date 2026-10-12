@@ -12,17 +12,17 @@ export const site = {
 };
 
 export const nav = [
+  { label: 'Services', href: '/services' },
   { label: 'Case Studies', href: '/case-studies' },
   { label: 'Partners', href: '/partners' },
   { label: 'Products', href: '/products' },
-  { label: 'Services', href: '/services' },
 ];
 
 export const footerNav = [
   { label: 'Contact Us', href: '/contact' },
-  { label: 'Partners', href: '/partners' },
-  { label: 'Case Studies', href: '/case-studies' },
   { label: 'Services', href: '/services' },
+  { label: 'Case Studies', href: '/case-studies' },
+  { label: 'Partners', href: '/partners' },
   { label: 'Products', href: '/products' },
 ];
 

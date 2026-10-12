@@ -9,8 +9,8 @@ import { allServices, modelDetails } from '../../data/services';
 
 ---
 <Base title="Services | Techtonnik" description="Senior software development: web, mobile and desktop apps, AI integrations and technical consulting.">
-  <Hero video={heroVideos.space} short>
-    <h1 class="h-lg">Software development, <span class="hl">done properly</span></h1>
+  <Hero video={heroVideos.space}>
+    <h1 class="h-xl">Software development, <span class="hl">done properly</span></h1>
     <p class="lead">Web, mobile and desktop apps, AI integrations and technical guidance. Built by us, or by the right team from our network.</p>
     <div class="btn-row">
       <a class="btn btn-primary" href="/contact">Get in Touch</a>
@@ -66,7 +66,8 @@ import { allServices, modelDetails } from '../../data/services';
 </Base>
 
 <style>
-  :global(main .hero.short) { min-height: 440px; }
+  /* Same as home: hero and the logo strip below it (80px tall) fill exactly the first screen. */
+  :global(main .hero) { min-height: calc(100svh - 80px); }
   :global(main .hero-content) { padding-top: 96px; padding-bottom: 40px; }
 
   .service { display: flex; flex-direction: column; gap: 12px; }

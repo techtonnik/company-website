@@ -131,14 +131,14 @@ const steps = [
   </section>
 
   <!-- Network -->
-  <section class="network">
-    <div class="container">
+  <section class="section container">
+    <div>
       <div class="section-head">
         <div>
-          <h2 class="h-lg">The <span class="hl-dark">network</span> behind the work</h2>
+          <h2 class="h-lg">The <span class="hl">network</span> behind the work</h2>
           <p>Trusted companies and specialists we work with, and introduce clients to when they're the better fit.</p>
         </div>
-        <a class="btn btn-light accent-text" href="/partners">All Partners</a>
+        <a class="btn btn-primary" href="/partners">All Partners</a>
       </div>
       <div class="partner-grid">
         {network.map((p) => (
@@ -187,13 +187,13 @@ const steps = [
 </Base>
 
 <style>
-  /* Hero fills the whole screen on every device. */
-  :global(main .hero) { min-height: 100svh; }
+  /* Hero and the logo strip below it (80px tall) fill exactly the first screen on every device. */
+  :global(main .hero) { min-height: calc(100svh - 80px); }
   :global(main .hero-content) { padding-top: 96px; padding-bottom: 40px; }
   .hero-lead { max-width: 44rem; font-size: clamp(1.05rem, 1.5vw, 1.25rem); text-wrap: pretty; }
   @media (max-width: 640px) { .br-wide { display: none; } }
 
-  .head { max-width: 40rem; margin: 0 auto 32px; }
+  .head { max-width: 40rem; margin: 0 auto clamp(24px, 3vw, 40px); }
   .head p { margin-top: 14px; font-weight: 500; }
   .ways { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
   @media (max-width: 1080px) { .ways { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -221,25 +221,22 @@ const steps = [
   @media (max-width: 560px) { .app { flex-basis: 100%; } }
 
 
-  .network { background: var(--accent); padding-block: clamp(32px, 3.5vw, 48px); margin-block: clamp(16px, 2vw, 24px); }
-  .network .section-head p { font-weight: 500; }
-  .hl-dark { color: var(--bg); }
   .partner-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
-  .partner { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; min-height: 160px; padding: 24px 18px; border-radius: var(--radius); background: rgba(0, 4, 13, .22); text-align: center; }
+  .partner { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; min-height: 160px; padding: 24px 18px; border: 2px solid var(--line); border-radius: var(--radius-lg); background: var(--bg-raised); text-align: center; }
   .partner img { max-height: 52px; max-width: 80%; width: auto; object-fit: contain; }
-  .partner { transition: background .2s, transform .2s; }
-  .partner:hover { background: rgba(0, 4, 13, .38); transform: translateY(-2px); }
-  .partner p { font-size: .85rem; font-weight: 600; }
+  .partner { transition: border-color .2s, transform .2s; }
+  .partner:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .partner p { font-size: .85rem; color: var(--text-muted); }
   /* Wide wordmark-only logo: shrink to sit level with the others. */
   .partner img[alt='Cinnamon'] { max-height: 34px; }
-  .join { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 14px; padding: 20px 28px; border-radius: var(--radius); background: var(--bg); transition: transform .2s; }
-  .join:hover { transform: translateY(-2px); }
+  .join { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 14px; padding: 20px 28px; border: 2px dashed var(--line); border-radius: var(--radius-lg); transition: border-color .2s, transform .2s; }
+  .join:hover { border-color: var(--accent); transform: translateY(-2px); }
   .join-cta { display: flex; align-items: center; gap: 6px; color: var(--accent); font-weight: 600; font-size: .9rem; }
   @media (max-width: 860px) { .partner-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
-  .steps-title { margin: 40px 0 20px; }
+  .steps-title { margin: clamp(40px, 5vw, 64px) 0 20px; }
   .steps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
-  .steps li { padding: 24px; border-radius: var(--radius); background: var(--bg); }
+  .steps li { padding: 24px; border: 2px solid var(--line); border-radius: var(--radius-lg); background: var(--bg-raised); }
   .step-num { display: inline-grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--accent); font: 700 1rem var(--font-head); margin-bottom: 14px; }
   .steps h4 { margin-bottom: 8px; }
   .steps p { font-size: .88rem; color: var(--text-muted); }

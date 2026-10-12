@@ -1,0 +1,46 @@
+---
+// Scroll reveal for every page: content fades up as it scrolls into view, and siblings
+// (cards in a row) come in one after another. Styles live in global.css (.reveal).
+---
+<script>
+  const targets = [
+    // Shared
+    '.hero-content > *', '.section-head', '.cta .inner > *',
+    // Home
+    '.head', '.way', '.app', '.partner', '.join', '.steps-title', '.steps li', '[data-carousel]', '.about > img', '.about > div > *',
+    // Services
+    '.service', '.model',
+    // Case studies
+    '.project', '.box',
+    '.cs-hero .inner > *', '.section > h2', '.section > .intro', '.overview > p', '.timeline > li', '.gallery > div', '.stack > li', '.outcome', '.testimonial', '.more-box',
+    // Products
+    'article.featured', '.product',
+    // Contact
+    '.email-card', '.shortcut', '.trust > h2', '.logos > *', '.again .inner > *',
+    // Privacy policy, 404
+    '.page > *',
+  ];
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+    const els = [...document.querySelectorAll<HTMLElement>(targets.map((t) => `main ${t}`).join(','))];
+    const seen = new Map<Element, number>();
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    els.forEach((el) => {
+      // Skip anything inside another revealed element, so it doesn't fade in twice.
+      if (els.some((other) => other !== el && other.contains(el))) return;
+      // Stagger by position among revealed siblings, capped so long grids don't drag.
+      const i = seen.get(el.parentElement!) ?? 0;
+      seen.set(el.parentElement!, i + 1);
+      el.style.setProperty('--reveal-delay', `${Math.min(i, 5) * 90}ms`);
+      // Anything already scrolled past (e.g. reload mid-page) just shows.
+      if (el.getBoundingClientRect().bottom < 0) return;
+      el.classList.add('reveal');
+      io.observe(el);
+    });
+  }
+</script>
