@@ -76,4 +76,5 @@ export const moreProjects: Project[] = [
   { name: 'D&L Pedicure', summary: 'A website for a beauty salon in the Netherlands.', logo: media('249b31_b5a1cbacdb4f495799147ef887e46843'), href: 'https://denlpedicure.nl/' },
   { name: 'NotYou Brand', summary: 'An online shop for a US-based clothing brand.', logo: media('cce622_86c7036507c946aa8a1059eb8ba324a5'), href: 'https://notyoubrand.com/' },
   { name: 'Narcist', summary: 'The official logo and custom font for an urban fashion brand.', logo: media('cce622_cfefe3c60df34395a862aa59bb32b7fb') },
+  { name: 'Unique Denim', summary: 'A Shopify online shop for a Serbian denim brand.', logo: '/media/project-unique.png', href: 'https://unique.co.rs/' },
 ];
