@@ -6,7 +6,7 @@ import Icon from '../components/Icon.astro';
 import Testimonials from '../components/Testimonials.astro';
 import DeviceMockup from '../components/DeviceMockup.astro';
 import Cta from '../components/Cta.astro';
-import { heroVideos, ctaBackgrounds, media } from '../data/site';
+import { heroVideos, ctaBackgrounds } from '../data/site';
 import { partners } from '../data/showcase';
 import { featured, featuredHref } from '../data/projects';
 import { isExternal } from '../lib/rich';
@@ -170,7 +170,7 @@ const steps = [
 
   <!-- About -->
   <section class="section container about">
-    <img src={media('cce622_48e5e8feccb34fe580821d2107417bfc')} alt="Stevan Radovanović" width="340" height="425" loading="lazy" />
+    <img src="/media/founder-stevan.jpg" alt="Stevan Radovanović" width="340" height="425" loading="lazy" />
     <div>
       <h2 class="h-lg">About <span class="hl">Techtonnik</span></h2>
       <p>Techtonnik is a solo software development business, founded and run by Stevan Radovanović. It started with a simple goal: do software development properly, with honest communication, clean code and long-term support. Along the way, Stevan has worked with dozens of clients and connected many of them with the people best suited to their projects.</p>

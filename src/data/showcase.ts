@@ -33,8 +33,8 @@ export const partners: Partner[] = [
     title: 'Design, Develop, Deploy!',
     text: 'Cinnamon is a one-stop shop to design, develop and deploy digital products, with AI-accelerated development at its core. Together, we are building Zirtue, the bill-pay lending platform powered by friends and family.',
     links: [{ label: 'Visit Website', href: 'https://www.cinnamon.agency/' }, { label: 'LinkedIn', href: 'https://www.linkedin.com/company/cinnamon-llc' }],
-    quote: 'Placeholder: a short testimonial from Cinnamon goes here.',
-    author: 'Name Surname, Role @ Cinnamon', placeholder: true,
+    quote: '"Working with Stevan is always a pleasure, and we genuinely enjoy every project we take on together."',
+    author: 'Mladen Simić, Co-Founder @ Cinnamon', avatar: '/media/partner-cinnamon-mladen.jpg',
   },
   {
     logo: media('249b31_c1ea1c3a455e43ce8e1b55d7dd8bbbf9'), logoAlt: 'TrinitySmartIT', mockup: { name: 'trinity', url: 'https://www.trinitysmartit.com/', tint: '#1b3d6b' },
