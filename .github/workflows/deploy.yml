@@ -23,10 +23,6 @@ jobs:
       - uses: withastro/action@v3
         with:
           node-version: 20
-        env:
-          # Served at https://techtonnik.github.io/company-website/ until the custom domain moves over.
-          SITE_URL: https://techtonnik.github.io
-          BASE_PATH: /company-website
 
   deploy:
     needs: build

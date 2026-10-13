@@ -31,13 +31,10 @@ Refresh them with `npm run mockups` (or `npm run mockups -- <name>`); sites are 
 
 ## Deployment
 
-Every push to `main` builds and deploys to GitHub Pages via `.github/workflows/deploy.yml`:
-https://techtonnik.github.io/company-website/
+Every push to `main` builds and deploys to GitHub Pages via `.github/workflows/deploy.yml`,
+served at https://www.techtonnik.com (custom domain set in the repo's Pages settings, with
+`public/CNAME` kept in sync; DNS is managed in Namecheap).
 
-The workflow sets `SITE_URL` and `BASE_PATH`; `integrations/base-path.mjs` then prefixes
+To serve the site from a subpath instead (e.g. `https://<org>.github.io/<repo>/`), set
+`SITE_URL` and `BASE_PATH` in the workflow; `integrations/base-path.mjs` then prefixes
 root-relative links in the build output, so source code keeps plain `/path` links.
-
-**Moving to www.techtonnik.com:** remove `BASE_PATH` (and set `SITE_URL` to
-`https://www.techtonnik.com`) in the workflow, add `public/CNAME` containing
-`www.techtonnik.com`, set the custom domain in the repo's Pages settings, and point the
-domain's DNS at GitHub Pages.
