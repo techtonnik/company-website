@@ -31,7 +31,7 @@ export const featured: Featured[] = [
   },
   {
     title: 'Zirtue', tagline: 'Bill Pay Loans Powered by Friends & Family', scope: 'Fintech platform',
-    text: 'A bill-pay lending platform where friends and family help each other pay bills on time, with no credit checks, no hidden fees and over 40,000 billers. Built together with Cinnamon.',
+    text: 'A bill-pay lending platform where friends and family help each other pay bills on time, with no credit checks, no hidden fees and over 40,000 billers. Built as part of Cinnamon Agency.',
     site: 'https://www.zirtue.com/', mockup: 'zirtue', tint: '#0b3a8c', via: { name: 'Cinnamon', href: 'https://www.cinnamon.agency/' },
   },
   {

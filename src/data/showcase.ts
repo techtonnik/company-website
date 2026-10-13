@@ -41,7 +41,7 @@ export const partners: Partner[] = [
     title: 'Joining Forces to Achieve Greatness!',
     text: 'Despite operating in the same industry, we see each other not as competitors but as partners with a shared vision: to provide world-class, on-demand software development services that exceed client expectations. By combining the strengths of our teams, we have achieved remarkable results, ensuring client satisfaction at every step.',
     links: [{ label: 'Visit Website', href: 'https://www.trinitysmartit.com/' }, { label: 'Contact Them', href: 'https://www.trinitysmartit.com/contact/' }],
-    quote: '"Collaborating with Techtonnik has been an exceptional experience. Their team exemplifies professionalism, expertise, and a commitment to delivering high-quality solutions. I highly recommend Techtonnik as a trusted and innovative partner in the software development landscape."',
+    quote: '"Collaborating with Techtonnik has been an exceptional experience. Their team exemplifies professionalism, expertise, and a commitment to delivering high-quality solutions."',
     author: 'Nemanja Sićević, CEO @ TrinitySmartIT', avatar: media('249b31_f6a4eada649c4a6ca7ae58ecd276542e'),
   },
   {
@@ -90,7 +90,7 @@ export const partners: Partner[] = [
     title: 'Learning Through Play',
     text: 'Cognitika is a non-profit studio from Serbia developing educational games, built with subject matter experts and tested with real learners, from extended reality all the way to tabletop.',
     links: [{ label: 'Visit Website', href: 'https://cognitika.com/' }, { label: 'LinkedIn', href: 'https://www.linkedin.com/company/cognitika-play' }],
-    quote: 'Placeholder: a short testimonial from Cognitika goes here.',
-    author: 'Name Surname, Role @ Cognitika', placeholder: true,
+    quote: '"Stevan\'s experience has been invaluable to Cognitika, helping us turn ambitious ideas for educational games into products that actually work."',
+    author: 'Ilija Bojović, Founder @ Cognitika', avatar: '/media/partner-cognitika-ilija.webp',
   },
 ];
