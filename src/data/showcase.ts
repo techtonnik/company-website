@@ -86,9 +86,9 @@ export const partners: Partner[] = [
   },
   {
     logo: '/media/partner-cognitika.png', logoAlt: 'Cognitika',
-    mockup: { name: 'cognitika', url: 'https://cognitika.com/', tint: '#7a6a2a' },
-    title: 'Learning Through Play',
-    text: 'Cognitika is a non-profit studio from Serbia developing educational games, built with subject matter experts and tested with real learners, from extended reality all the way to tabletop.',
+    mockup: { name: 'cognitika', url: 'https://cognitika.com/', tint: '#073B3A' },
+    title: 'Building Games That Teach',
+    text: 'Cognitika is a non-profit organisation from Serbia that turns learning outcomes into games. Each one is designed around what learners must be able to do and tested with them until they can, from extended reality all the way to tabletop.',
     links: [{ label: 'Visit Website', href: 'https://cognitika.com/' }, { label: 'LinkedIn', href: 'https://www.linkedin.com/company/cognitika-play' }],
     quote: '"Stevan\'s experience has been invaluable to Cognitika, helping us turn ambitious ideas for educational games into products that actually work."',
     author: 'Ilija Bojović, Founder @ Cognitika', avatar: '/media/partner-cognitika-ilija.webp',
