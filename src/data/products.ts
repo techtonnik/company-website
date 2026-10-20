@@ -11,13 +11,30 @@ export type Product = {
   link?: { label: string; href: string };
 };
 
-export const featuredProduct = {
-  name: 'Synergy X',
-  tagline: 'Tailor-made marketing automation',
-  text: "Every marketing agency has its own workflow, and Synergy X automates it in a fully customizable way. Built for AI Digital, it takes the repetitive work out of preparing HTML5 creatives, like adding click tags in bulk across a whole campaign.",
-  tags: ['Web app', 'Automation', 'Built for AI Digital'],
-  logo: media('cce622_eb2099f37a7e4995a3ce0af674376641'),
+// Shown large, with a device mockup, above the grid.
+export type FeaturedProduct = Omit<Product, 'link'> & {
+  logo: string;
+  mockup: { desktop: string; mobile?: string; label?: string; tint: string; tv?: boolean; alt: string };
 };
+
+export const featuredProducts: FeaturedProduct[] = [
+  {
+    name: 'Synergy X',
+    tagline: 'Tailor-made marketing automation',
+    text: "Every marketing agency has its own workflow, and Synergy X automates it in a fully customizable way. Built for AI Digital, it takes the repetitive work out of preparing HTML5 creatives, like adding click tags in bulk across a whole campaign.",
+    tags: ['Web app', 'Automation', 'Built for AI Digital'],
+    logo: media('cce622_eb2099f37a7e4995a3ce0af674376641'),
+    mockup: { desktop: '/mockups/synergyx-desktop.jpg', mobile: '/mockups/synergyx-mobile.jpg', label: 'Synergy X', tint: '#1c2390', alt: 'Synergy X app' },
+  },
+  {
+    name: 'My Own Start',
+    tagline: 'A calm start screen for Samsung TVs',
+    text: 'Smart TVs open on rows of ads and apps nobody uses. My Own Start replaces that with what a household actually watches: their favourite apps as big tiles, the consoles and boxes plugged into the TV, special-day messages next to the date, and a slideshow of their own photos. Everything is set up on the TV, with the remote.',
+    tags: ['Samsung TV', 'Tizen', 'Web app'],
+    logo: '/media/product-my-own-start.png',
+    mockup: { desktop: '/mockups/myownstart-tv.jpg', tint: '#3b1f4f', tv: true, alt: 'My Own Start on a TV' },
+  },
+];
 
 export const products: Product[] = [
   {

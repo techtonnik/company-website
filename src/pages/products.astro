@@ -5,7 +5,7 @@ import Cta from '../components/Cta.astro';
 import Icon from '../components/Icon.astro';
 import DeviceMockup from '../components/DeviceMockup.astro';
 import { heroVideos, ctaBackgrounds, site } from '../data/site';
-import { featuredProduct, products } from '../data/products';
+import { featuredProducts, products } from '../data/products';
 
 const demo = (name: string) => `mailto:${site.email}?subject=${encodeURIComponent(`Demo request: ${name}`)}`;
 ---
@@ -16,16 +16,18 @@ const demo = (name: string) => `mailto:${site.email}?subject=${encodeURIComponen
   </Hero>
 
   <section class="section container">
-    <article class="featured">
-      <DeviceMockup desktop="/mockups/synergyx-desktop.jpg" mobile="/mockups/synergyx-mobile.jpg" label="Synergy X" tint="#1c2390" alt="Synergy X app" />
-      <div class="featured-body">
-        <img class="featured-logo" src={featuredProduct.logo} alt={featuredProduct.name} loading="lazy" />
-        <h2 class="h-md">{featuredProduct.tagline}</h2>
-        <p>{featuredProduct.text}</p>
-        <ul class="tags">{featuredProduct.tags.map((t) => <li>{t}</li>)}</ul>
-        <a class="btn btn-primary" href={demo(featuredProduct.name)}>Request a Demo</a>
-      </div>
-    </article>
+    {featuredProducts.map((f, i) => (
+      <article class:list={['featured', { flip: i % 2 === 1 }]}>
+        <DeviceMockup {...f.mockup} />
+        <div class="featured-body">
+          <img class="featured-logo" src={f.logo} alt={f.name} loading="lazy" />
+          <h2 class="h-md">{f.tagline}</h2>
+          <p>{f.text}</p>
+          <ul class="tags">{f.tags.map((t) => <li>{t}</li>)}</ul>
+          <a class="btn btn-primary" href={demo(f.name)}>Request a Demo</a>
+        </div>
+      </article>
+    ))}
 
     <div class="grid">
       {products.map((p) => (
@@ -60,7 +62,12 @@ const demo = (name: string) => `mailto:${site.email}?subject=${encodeURIComponen
   .featured-logo { height: 40px; width: auto; }
   .featured-body p { font-size: .95rem; color: var(--text-muted); }
   .featured-body .btn { margin-top: 8px; }
-  @media (max-width: 860px) { .featured { grid-template-columns: 1fr; } .featured-body { padding: 0 8px 12px; } }
+  .featured + .featured { margin-top: 16px; }
+  /* Every other featured product has its mockup on the right. */
+  .featured.flip { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); }
+  .featured.flip :global(.mockup) { order: 2; }
+  .featured.flip .featured-body { padding-right: 0; padding-left: clamp(0px, 2vw, 24px); }
+  @media (max-width: 860px) { .featured, .featured.flip { grid-template-columns: 1fr; } .featured.flip :global(.mockup) { order: 0; } .featured-body, .featured.flip .featured-body { padding: 0 8px 12px; } }
 
   .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 16px; }
   @media (max-width: 960px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }

@@ -1,5 +1,6 @@
 ---
-// Browser window + phone mockup drawn in CSS around live-site screenshots.
+// Browser window + phone mockup drawn in CSS around live-site screenshots,
+// or a TV (tv) around a 16:9 screenshot for apps that run on televisions.
 // Screenshots live in public/mockups and are refreshed with `npm run mockups`.
 // The address bar shows `label` if given, else the host from `url`; with neither, it's hidden.
 interface Props {
@@ -10,22 +11,30 @@ interface Props {
   label?: string;
   /** Backdrop color behind the devices. */
   tint?: string;
+  /** Draw a TV around `desktop` (a 16:9 screenshot) instead of a browser; no phone. */
+  tv?: boolean;
   alt: string;
 }
-const { desktop, mobile, url, label, tint = '#0b2a4a', alt } = Astro.props;
+const { desktop, mobile, url, label, tint = '#0b2a4a', tv = false, alt } = Astro.props;
 const host = label ?? (url && new URL(url).hostname.replace(/^www\./, ''));
 ---
 <div class="mockup" style={`--tint:${tint}`}>
-  <div class="browser">
-    {host && (
-      <div class="chrome" aria-hidden="true">
-        <span class="dots"><i></i><i></i><i></i></span>
-        <span class="address">{host}</span>
-      </div>
-    )}
-    <img src={desktop} alt={alt} loading="lazy" width="1440" height="900" />
-  </div>
-  {mobile && (
+  {tv ? (
+    <div class="tv">
+      <img src={desktop} alt={alt} loading="lazy" width="1440" height="810" />
+    </div>
+  ) : (
+    <div class="browser">
+      {host && (
+        <div class="chrome" aria-hidden="true">
+          <span class="dots"><i></i><i></i><i></i></span>
+          <span class="address">{host}</span>
+        </div>
+      )}
+      <img src={desktop} alt={alt} loading="lazy" width="1440" height="900" />
+    </div>
+  )}
+  {mobile && !tv && (
     <div class="phone" aria-hidden="true">
       <img src={mobile} alt="" loading="lazy" width="390" height="664" />
     </div>
@@ -53,6 +62,16 @@ const host = label ?? (url && new URL(url).hostname.replace(/^www\./, ''));
     position: absolute; right: 6%; bottom: -6%; width: 22%;
     padding: 1.6%; border-radius: 18% / 10%; background: #111;
     box-shadow: 0 0 0 1px #333 inset, 0 18px 36px rgba(0, 0, 0, .55);
+  }
+  .tv {
+    position: absolute; left: 8%; top: 10%; width: 84%;
+    padding: 1.1%; border-radius: 10px; background: #0d0f14;
+    box-shadow: 0 0 0 1px #2a2f3a inset, 0 18px 40px rgba(0, 0, 0, .5);
+  }
+  .tv img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 4px; }
+  .tv::after {
+    content: ""; position: absolute; left: 50%; top: 100%; width: 28%; height: 9%;
+    transform: translateX(-50%); border-radius: 0 0 8px 8px; background: linear-gradient(#1c2029, #0d0f14);
   }
   .phone img { width: 100%; aspect-ratio: 390 / 664; object-fit: cover; object-position: top; border-radius: 14% / 8%; }
 </style>
