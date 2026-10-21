@@ -39,7 +39,7 @@ export const featuredProducts: FeaturedProduct[] = [
   {
     name: 'Nightmare Hunter',
     tagline: 'An original horror platformer for the NES',
-    text: 'Every night the town dreams, and every night something dreams back. A whip-wielding hunter fights through eight stages in a brand new homebrew game exclusively for the NES.',
+    text: 'Every night the town dreams, and every night something dreams back. A whip-wielding hunter fights through eight stages in a brand new homebrew game made exclusively for the NES.',
     tags: ['NES game', '6502 assembly', 'PAL'],
     logo: '/media/product-nightmare-hunter.png',
     request: { label: 'Request the ROM', subject: 'ROM request' },
