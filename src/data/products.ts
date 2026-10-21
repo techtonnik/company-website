@@ -9,12 +9,14 @@ export type Product = {
   tags: string[];
   logo?: string;
   link?: { label: string; href: string };
+  /** Replaces the default "Request a demo" email; `subject` is the email's subject prefix. */
+  request?: { label: string; subject: string };
 };
 
 // Shown large, with a device mockup, above the grid.
 export type FeaturedProduct = Omit<Product, 'link'> & {
   logo: string;
-  mockup: { desktop: string; mobile?: string; label?: string; tint: string; tv?: boolean; alt: string };
+  mockup: { desktop: string; mobile?: string; label?: string; tint: string; tv?: boolean; art?: boolean; alt: string };
 };
 
 export const featuredProducts: FeaturedProduct[] = [
@@ -33,6 +35,15 @@ export const featuredProducts: FeaturedProduct[] = [
     tags: ['Samsung TV', 'Tizen', 'Web app'],
     logo: '/media/product-my-own-start.png',
     mockup: { desktop: '/mockups/myownstart-tv.jpg', tint: '#3b1f4f', tv: true, alt: 'My Own Start on a TV' },
+  },
+  {
+    name: 'Nightmare Hunter',
+    tagline: 'An original horror platformer for the NES',
+    text: 'Every night the town dreams, and every night something dreams back. A whip-wielding hunter fights through eight stages for the NES.',
+    tags: ['NES game', '6502 assembly', 'PAL'],
+    logo: '/media/product-nightmare-hunter.png',
+    request: { label: 'Request the ROM', subject: 'ROM request' },
+    mockup: { desktop: '/mockups/nightmarehunter-cart.jpg', tint: '#2a0f3d', art: true, alt: 'Nightmare Hunter cartridge' },
   },
 ];
 

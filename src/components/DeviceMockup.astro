@@ -1,6 +1,7 @@
 ---
 // Browser window + phone mockup drawn in CSS around live-site screenshots,
-// or a TV (tv) around a 16:9 screenshot for apps that run on televisions.
+// or a TV (tv) around a 16:9 screenshot for apps that run on televisions,
+// or a finished 16:10.5 picture (art) shown as is, for things that aren't screens.
 // Screenshots live in public/mockups and are refreshed with `npm run mockups`.
 // The address bar shows `label` if given, else the host from `url`; with neither, it's hidden.
 interface Props {
@@ -13,13 +14,17 @@ interface Props {
   tint?: string;
   /** Draw a TV around `desktop` (a 16:9 screenshot) instead of a browser; no phone. */
   tv?: boolean;
+  /** Show `desktop` as a ready-made scene filling the frame, with no device drawn around it. */
+  art?: boolean;
   alt: string;
 }
-const { desktop, mobile, url, label, tint = '#0b2a4a', tv = false, alt } = Astro.props;
+const { desktop, mobile, url, label, tint = '#0b2a4a', tv = false, art = false, alt } = Astro.props;
 const host = label ?? (url && new URL(url).hostname.replace(/^www\./, ''));
 ---
 <div class="mockup" style={`--tint:${tint}`}>
-  {tv ? (
+  {art ? (
+    <img class="art" src={desktop} alt={alt} loading="lazy" width="1440" height="945" />
+  ) : tv ? (
     <div class="tv">
       <img src={desktop} alt={alt} loading="lazy" width="1440" height="810" />
     </div>
@@ -34,7 +39,7 @@ const host = label ?? (url && new URL(url).hostname.replace(/^www\./, ''));
       <img src={desktop} alt={alt} loading="lazy" width="1440" height="900" />
     </div>
   )}
-  {mobile && !tv && (
+  {mobile && !tv && !art && (
     <div class="phone" aria-hidden="true">
       <img src={mobile} alt="" loading="lazy" width="390" height="664" />
     </div>
@@ -63,6 +68,7 @@ const host = label ?? (url && new URL(url).hostname.replace(/^www\./, ''));
     padding: 1.6%; border-radius: 18% / 10%; background: #111;
     box-shadow: 0 0 0 1px #333 inset, 0 18px 36px rgba(0, 0, 0, .55);
   }
+  .art { display: block; width: 100%; height: 100%; object-fit: cover; }
   .tv {
     position: absolute; left: 8%; top: 10%; width: 84%;
     padding: 1.1%; border-radius: 10px; background: #0d0f14;

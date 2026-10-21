@@ -7,7 +7,7 @@ import DeviceMockup from '../components/DeviceMockup.astro';
 import { heroVideos, ctaBackgrounds, site } from '../data/site';
 import { featuredProducts, products } from '../data/products';
 
-const demo = (name: string) => `mailto:${site.email}?subject=${encodeURIComponent(`Demo request: ${name}`)}`;
+const demo = (name: string, subject = 'Demo request') => `mailto:${site.email}?subject=${encodeURIComponent(`${subject}: ${name}`)}`;
 ---
 <Base title="Products | Techtonnik" description="Things we've built in-house. Like something here? Ask for a demo, or let us build something like it for you.">
   <Hero video={heroVideos.space} short>
@@ -24,7 +24,7 @@ const demo = (name: string) => `mailto:${site.email}?subject=${encodeURIComponen
           <h2 class="h-md">{f.tagline}</h2>
           <p>{f.text}</p>
           <ul class="tags">{f.tags.map((t) => <li>{t}</li>)}</ul>
-          <a class="btn btn-primary" href={demo(f.name)}>Request a Demo</a>
+          <a class="btn btn-primary" href={demo(f.name, f.request?.subject)}>{f.request?.label ?? 'Request a Demo'}</a>
         </div>
       </article>
     ))}
@@ -42,7 +42,7 @@ const demo = (name: string) => `mailto:${site.email}?subject=${encodeURIComponen
           {p.link ? (
             <a class="go" href={p.link.href} target="_blank" rel="noopener">{p.link.label} <Icon name="external" size={15} /></a>
           ) : (
-            <a class="go" href={demo(p.name)}>Request a demo <Icon name="arrow" size={15} /></a>
+            <a class="go" href={demo(p.name, p.request?.subject)}>{p.request?.label ?? 'Request a demo'} <Icon name="arrow" size={15} /></a>
           )}
         </article>
       ))}
