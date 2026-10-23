@@ -33,7 +33,7 @@ export const partners: Partner[] = [
     logo: '/media/partner-muvero.png', logoMono: '/media/partner-muvero-white.png', logoAlt: 'Muvero',
     mockup: { name: 'muvero', url: 'https://muvero.app/', tint: '#2f5d4f' },
     title: 'Say It Once, Use It Everywhere',
-    text: 'Muvero is an AI app that turns a single recording into transcripts, subtitles, reels, articles and meeting recaps, with no bot in the call. It works in 99 languages and is excellent in Serbian and Croatian.',
+    text: 'Muvero is an AI app that turns a single recording into transcripts, subtitles, reels, articles and meeting recaps, with no bot in the call. It works in 99 languages and stays highly accurate in less common ones too.',
     links: [{ label: 'Visit Website', href: 'https://muvero.app/' }, { label: 'Contact Them', href: 'https://muvero.app/contact' }],
     quote: '"Stevan has been consulting on Muvero since day one, and Techtonnik was among the very first to actually use it. Having someone who helps shape the product and relies on it every day has made it better at every step."',
     author: 'Đorđe Krstić, Founder @ Muvero', avatar: '/media/partner-muvero-djordje.jpg',
