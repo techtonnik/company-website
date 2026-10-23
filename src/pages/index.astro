@@ -47,8 +47,9 @@ const strengths: Record<string, string> = {
   Tremium: 'Software development',
   Cinnamon: 'Design, development & deployment',
   Cognitika: 'Educational game studio',
+  Muvero: 'AI transcripts & meeting recaps',
 };
-const network = partners.map((p) => ({ logo: p.logo, name: p.logoAlt, text: strengths[p.logoAlt], href: p.links[0].href }));
+const network = partners.map((p) => ({ logo: p.logoMono ?? p.logo, name: p.logoAlt, text: strengths[p.logoAlt], href: p.links[0].href }));
 
 const steps = [
   { title: 'Tell us what you need', text: 'A short call about your product, timeline and budget. No sales pitch.' },
@@ -221,7 +222,10 @@ const steps = [
   @media (max-width: 560px) { .app { flex-basis: 100%; } }
 
 
-  .partner-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  /* Desktop rows of 3, 3, 2, 2: six tracks, first six cards span two, the rest span three. */
+  .partner-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 14px; }
+  .partner-grid > .partner { grid-column: span 2; }
+  .partner-grid > .partner:nth-child(n + 7) { grid-column: span 3; }
   .partner { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; min-height: 160px; padding: 24px 18px; border: 2px solid var(--line); border-radius: var(--radius-lg); background: var(--bg-raised); text-align: center; }
   .partner img { max-height: 52px; max-width: 80%; width: auto; object-fit: contain; }
   .partner { transition: border-color .2s, transform .2s; }
@@ -232,7 +236,10 @@ const steps = [
   .join { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 14px; padding: 20px 28px; border: 2px dashed var(--line); border-radius: var(--radius-lg); transition: border-color .2s, transform .2s; }
   .join:hover { border-color: var(--accent); transform: translateY(-2px); }
   .join-cta { display: flex; align-items: center; gap: 6px; color: var(--accent); font-weight: 600; font-size: .9rem; }
-  @media (max-width: 860px) { .partner-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 860px) {
+    .partner-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .partner-grid > .partner:nth-child(n) { grid-column: auto; }
+  }
 
   .steps-title { margin: clamp(40px, 5vw, 64px) 0 20px; }
   .steps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }

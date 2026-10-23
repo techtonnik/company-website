@@ -5,6 +5,8 @@ export type Link = { label: string; href: string };
 export type Partner = {
   logo: string;
   logoAlt: string;
+  /** All-white variant for the home page grid, when `logo` has colour in it. */
+  logoMono?: string;
   /** Live-site mockup from public/mockups (see scripts/capture-mockups.mjs). */
   mockup: { name: string; url: string; tint: string };
   title: string;
@@ -26,6 +28,15 @@ export const partners: Partner[] = [
     links: [{ label: 'Visit Website', href: 'https://www.codeit.rs/' }, { label: 'Contact Them', href: 'https://www.codeit.rs/get-in-touch/' }],
     quote: '"Working with Techtonnik has been a seamless experience. Their expertise and dedication have played a key role in helping us achieve our goals."',
     author: 'Mihailo Milojević, CEO & Founder @ CodeIT', avatar: media('249b31_63aad0c2b7b3458db2c3c9a4b1a7f5dd'),
+  },
+  {
+    logo: '/media/partner-muvero.png', logoMono: '/media/partner-muvero-white.png', logoAlt: 'Muvero',
+    mockup: { name: 'muvero', url: 'https://muvero.app/', tint: '#2f5d4f' },
+    title: 'Say It Once, Use It Everywhere',
+    text: 'Muvero is an AI app that turns a single recording into transcripts, subtitles, reels, articles and meeting recaps, with no bot in the call. It works in 99 languages and is excellent in Serbian and Croatian.',
+    links: [{ label: 'Visit Website', href: 'https://muvero.app/' }, { label: 'Contact Them', href: 'https://muvero.app/contact' }],
+    quote: '"Stevan has been consulting on Muvero since day one, and Techtonnik was among the very first to actually use it. Having someone who helps shape the product and relies on it every day has made it better at every step."',
+    author: 'Đorđe Krstić, Founder @ Muvero', avatar: '/media/partner-muvero-djordje.jpg',
   },
   {
     logo: '/media/partner-cinnamon.svg', logoAlt: 'Cinnamon',

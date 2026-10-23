@@ -19,6 +19,7 @@ const sites = {
   trinity: 'https://www.trinitysmartit.com/',
   helixconnect: 'https://helix-connect.com/',
   tremium: 'https://tremium.net/',
+  muvero: 'https://muvero.app/',
 };
 
 const only = process.argv.slice(2);
